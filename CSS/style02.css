@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&family=Yeseva+One&display=swap');
+*
+{
+    margin: 0px;
+    padding: 0px;
+    letter-spacing: 1px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+body
+{
+    color: #234E70;
+    background-color: #FBF8BE;  
+}
+#menu
+{
+    color: #FBF8BE;
+    background-color: #234E70;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 60px;
+    position: sticky;
+    top:0px;
+    left:0px;
+}
+#menu>h1
+{
+    text-transform: uppercase;
+    color: white;
+    font-family: 'Yeseva One', cursive;
+}
+#menu>ul
+{
+    display:flex;
+    gap: 30px;
+    list-style-type: none;
+}
+#menu>ul>li:hover
+{
+    transform: scale(1.1);
+}    
+#menu>ul>li>a:link
+{
+    color: #234E70;
+    background-color: #FBF8BE;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 18px;
+    box-shadow: 5px 5px 5px black;
+    font-family: 'Yeseva One', cursive;
+}
+#menu>ul>li>a:visited
+{
+    color: #234E70;
+}
+#menu>ul>li>a:hover
+{
+    color: #234E70;
+    background-color: white;
+}
+#menu>ul>li>a:active
+{
+    color: white;
+    background-color: black;
+}
+.last-child
+{
+    margin-right: 20px;
+}
+#content
+{
+    margin: auto;
+    margin-top: 20px;
+    width: 90%;
+}
+#content>h1
+{
+    border-bottom: 1px solid #234E70;
+    margin-bottom: 10px;
+    font-family: 'Yeseva One', cursive;
+}
+#content>p
+{
+    margin-bottom: 10px;
+    font-size: large;
+    text-align: justify;
+    line-height: 125%;
+}
+#fooster
+{
+    color: white;
+    background-color: #234E70;
+    text-align: center;
+    padding: 10px;
+    position: sticky;
+    bottom: 0px;
+    left: 0px;
+}
+#products
+{
+    border: 1px solid #234E70;
+    display: grid;
+    grid-template-columns: 3fr 2fr 5fr 6fr;
+    font-size: larger;
+}
+#products>span
+{
+    border: 1px solid #234E70;
+}
+.table-heading
+{
+    font-size: large;
+    color: white;
+    background-color: #234E70;
+    padding: 10px;
+}
+h2
+{
+    text-transform: uppercase;
+    padding: 5px;
+}
+.home-paragraph
+{
+    font-size: large;
+    text-align: justify;
+    text-indent: 100px;
+    border: 1px solid black;
+    padding: 10px;
+    word-spacing: 5px;
+    letter-spacing: 1px;
+    line-height: 150%;
+}
+#kids
+{
+    color: #FBF8BE;
+    background-color:#234E70;
+    width: 50%;
+    height: 300px;
+    border: 1px solid #FBF8BE;
+    box-sizing: border-box;
+    overflow: scroll;
+    float: left;
+}
+#science
+{
+    color: #FBF8BE;
+    background-color: #234E70;
+    width: 50%;
+    height: 300px;
+    border: 1px solid #FBF8BE;
+    box-sizing: border-box;
+    overflow: scroll;
+    float: left;
+}
+#kids>p
+{
+    border: 1px solid #FBF8BE;
+    margin: 5px;
+    padding: 5px;
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#science>p
+{
+    border: 1px solid #FBF8BE;
+    margin: 5px;
+    padding: 5px;
+    font-size: 22px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+
