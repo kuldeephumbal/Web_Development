@@ -1,0 +1,30 @@
+*
+{
+    margin: 0px;
+    padding: 0px;
+    letter-spacing: 1px;
+}
+html
+{
+    height: 100vh;
+}
+body
+{
+    color: brown;
+    background-color: beige;
+    background-image: url(image/css.png);
+    min-height: 100%;
+}
+h1
+{
+    padding: 5px;
+    text-transform: uppercase;
+}
+p
+{
+    font-size: 20px;
+    text-align: justify;
+    padding: 10px;
+    line-height: 150%;
+    word-spacing: 5px;
+}
