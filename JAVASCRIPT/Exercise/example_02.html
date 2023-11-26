@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 align="center">Example of three different prayer throught programming</h1>
+    <table align="center" cellpadding="10" cellspacing="5" width="50%" border="1">
+        <tr>
+            <th>Gayatri Mantra</th>
+            <th>Mahamrityunjaya Mantra</th>
+            <th>Vishnu Sahasranama</th>
+        </tr>
+        <tr>
+            <td id="prayer01"></td>
+            <td id="prayer02"></td>
+            <td id="prayer03"></td>
+        </tr>
+    </table>
+    <script>
+        var firstprayer = `ॐ भूर्भुवः स्वः
+                           तत्सवितुर्वरेण्यं
+                           भर्गो देवस्य धीमहि
+                           धियो यो नः प्रचोदयात्॥`
+        var secondprayer = `ॐ त्र्यम्बकं यजामहे
+                           सुगन्धिं पुष्टिवर्धनम्
+                           उर्वारुकमिव बन्धनान्मृत्योर्मुक्षीय मामृतात्॥`
+        var thirdprayer = "श्रीविष्णुसहस्रनामस्तोत्रम्॥"            
+        
+        document.getElementById('prayer01').innerHTML=firstprayer;
+        document.getElementById('prayer02').innerHTML=secondprayer;
+        document.getElementById('prayer03').innerHTML=thirdprayer;
+
+    </script>
+    
+</body>
+</html>
