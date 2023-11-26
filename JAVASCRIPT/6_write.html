@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 align="center">Example of Document.write</h1>
+    <script>
+        var name = prompt("What is your name?");
+        var hobbies = prompt("What is your hobbies?");
+        console.log("your name is " + name);
+        document.write(`<h1 align="center">My name is ${name}</h1>`)
+
+        console.log("your hobby is " + hobbies);
+        document.write(`<h1 align="center">My hobby is ${hobbies}</h1>`)
+    </script>
+</body>
+</html>

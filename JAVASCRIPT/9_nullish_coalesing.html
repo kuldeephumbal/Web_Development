@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Example of Nullesh Coalesing operator '??'</h1>
+    <script>
+        var username = null;
+        console.log("username = " + username);
+        // if(username === null)
+        // {
+        //     username = prompt("Entern your name");
+        // }
+        // alert(username);
+        // or
+        alert(username ?? prompt("Enter your name"));
+    </script>
+</body>
+</html>

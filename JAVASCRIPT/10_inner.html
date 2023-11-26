@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 align="center">Example of document.getElementById & innerHTML</h1>
+    <table border="1" cellpadding="10" cellspacing="10" width="50%" align="center">
+        <tr align="center">
+            <td colspan="3"><h1>Mantra</h1></td>
+        </tr>
+        <tr>
+            <td>Gayatri mantra</td>
+            <td>vishnu mantra</td>
+            <td>Shiv mantra</td>
+        </tr>
+        <tr>
+            <td id="first"></td>
+            <td id="second"></td>
+            <td id="third"></td>
+        </tr>
+    </table>
+    <script>
+        var mantra1 = `ॐ भूर्भुवः स्वः
+                       तत्सवितुर्वरेण्यं
+                       भर्गो देवस्य धीमहि
+                       धियो यो नः प्रचोदयात्॥`;
+        var mantra2 = "ॐ नमो नारायणाय";
+        var mantra3 = "ॐ नमः शिवाय";
+
+        document.getElementById('first').innerHTML = "<h2>" + mantra1 + "</h2>";
+        document.getElementById('second').innerHTML = "<h2>" + mantra2 + "</h2>";
+        document.getElementById('third').innerHTML = "<h2>" + mantra3 + "</h2>";
+    </script>
+</body>
+
+</html>
