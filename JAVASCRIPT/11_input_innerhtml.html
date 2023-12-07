@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" onsubmit="return CalculateArea();">
+        <table border="1" cellpadding="10" cellspacing="5" width="50%" align="center">
+            <tr>
+                <td colspan="2" align="center"><h1>Area calculater</h1></td>
+            </tr>
+            <tr>
+                <td>Enter length</td>
+                <td>
+                    <input type="number" name="length" id="length" required />
+                </td>
+            </tr>
+            <tr>
+                <td>Enter width</td>
+                <td>
+                    <input type="number" name="width" id="width" required />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Calculate area" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <h3 id="output"></h3>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script>
+        function CalculateArea()
+        {
+            // alert("function called");
+            var length = document.getElementById("length").value;
+            var width = document.getElementById("width").value;
+            console.log(length, width);
+
+            length = parseInt(length);
+            width = parseInt(width);
+
+            var area = length * width;
+
+            document.getElementById("output").innerHTML = "Area is " + area;
+            return false;
+        }
+    </script>     
+</body>
+</html>

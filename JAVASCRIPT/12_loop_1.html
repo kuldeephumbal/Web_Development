@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Create html table using javascript</h1>
+    <table cellpadding="10" cellsapcing="5" border="1" width="100%">
+        <tr>
+            <td width="20%">
+                <form action="" onsubmit="return GenerateTable();">
+                    <table border="1" cellpadding="10">
+                        <tr>
+                            <td>
+                                <input type="number" id="row" placeholder="Rows" required />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" id="colunm" placeholder="colunms" required />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" id="message" placeholder="Write any message" required />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="while">
+                                    <input type="radio" name="loop" id="while" value="while" required />
+                                    While loop
+                                </label>
+                                <br/>
+                                <label for="for">
+                                    <input type="radio" name="loop" id="for" value="for" required />
+                                    For loop
+                                </label>
+                                <br/>
+                                <label for="do">
+                                    <input type="radio" name="loop" id="do" value="do" required />
+                                    Do while loop
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <input type="submit" value="Generate table" id="submit" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </td>
+            <td>
+                <table border="1" cellpadding="10" width="100%" id="output">
+
+                </table>
+            </td>
+        </tr>
+    </table>
+    <script>
+        function GenerateTable()
+        {
+            alert("table is generated");
+            return false;
+        }
+    </script>
+</body>
+
+</html>
