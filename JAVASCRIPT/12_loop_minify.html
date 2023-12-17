@@ -63,63 +63,7 @@
         </tr>
     </table>
     <script>
-        function GenerateTable()
-        {
-            // alert("table is generated");
-            let row = document.getElementById("row").value;
-            let column = document.getElementById("column").value;
-            let message = document.getElementById("message").value;
-            let loop = document.querySelector("input[name='loop']:checked").value;
-            console.log(row,column,message,loop);
-            var temp='';
-            if(loop === "while")
-            {
-                // alert("use while loop to generate table");
-                var i = 1;
-                while(i<=row)
-                {
-                    temp += `<tr>`
-                    var j = 1;
-                    var temp2='';    
-                    while(j<=column)    
-                    {
-                        temp2 += `<td>${message}</td>`
-                        j=j+1;
-                    }
-                    temp += temp2 + `</tr>`
-                    i=i+1;
-                }
-            }
-            else if(loop === "for")
-            {
-                // alert("use for loop to generate table");
-                for(var i=1;i<=row;i=i+1)
-                {
-                    temp += `<tr>`
-                    var temp2='';
-                    for(var j=1;j<=column;j=j+1)    
-                    {
-                        temp2 += `<td>${message}</td>`
-                    }
-                    temp += temp2 +`</tr>`
-                } 
-            }
-            else if(loop === "do")
-            {
-                // alert("use dowhile loop to generate table");
-                temp = `<tr>`
-                temp += `<td>${message}</td><td>${message}</td><td>${message}</td>`
-                temp += `</tr>`
-                temp += `<tr>`
-                temp += `<td>${message}</td><td>${message}</td><td>${message}</td>`
-                temp += `</tr>`   
-                temp += `<tr>`
-                temp += `<td>${message}</td><td>${message}</td><td>${message}</td>`
-                temp += `</tr>` 
-            }
-            document.getElementById('output').innerHTML=temp;
-            return false;
-        }
+ function GenerateTable(){let t=document.getElementById("row").value,e=document.getElementById("column").value,d=document.getElementById("message").value,r=document.querySelector("input[name='loop']:checked").value;console.log(t,e,d,r);var l="";if("while"===r)for(var o=1;o<=t;){l+="<tr>";for(var a=1,n="";a<=e;)n+=`<td>${d}</td>`,a+=1;l+=n+"</tr>",o+=1}else if("for"===r)for(var o=1;o<=t;o+=1){l+="<tr>";for(var n="",a=1;a<=e;a+=1)n+=`<td>${d}</td>`;l+=n+"</tr>"}else"do"===r&&(l="<tr>",l+=`<td>${d}</td><td>${d}</td><td>${d}</td>`,l+="</tr>",l+="<tr>",l+=`<td>${d}</td><td>${d}</td><td>${d}</td>`,l+="</tr>",l+="<tr>",l+=`<td>${d}</td><td>${d}</td><td>${d}</td>`,l+="</tr>");return document.getElementById("output").innerHTML=l,!1}
     </script>
 </body>
 
