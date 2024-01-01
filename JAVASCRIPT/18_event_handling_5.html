@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table align="center" width="80%" cellpadding="10" id="output">
+        <tr>
+            <td><img id="image-1" src="http://picsum.photos/200?random=1" alt="..." /></td>
+            <td><img id="image-2" src="http://picsum.photos/200?random=2" alt="..." /></td>
+            <td><img id="image-3" src="http://picsum.photos/200?random=3" alt="..." /></td>
+        </tr>
+        <tr>
+            <td><img id="image-4" src="http://picsum.photos/200?random=4" alt="..." /></td>
+            <td><img id="image-5" src="http://picsum.photos/200?random=5" alt="..." /></td>
+            <td><img id="image-6" src="http://picsum.photos/200?random=6" alt="..." /></td>
+        </tr>
+        <tr>
+            <td><img id="image-7" src="http://picsum.photos/200?random=7" alt="..." /></td>
+            <td><img id="image-8" src="http://picsum.photos/200?random=8" alt="..." /></td>
+            <td><img id="image-9" src="http://picsum.photos/200?random=9" alt="..." /></td>
+        </tr>
+    </table>
+    <script>
+        var count = 10;
+        // Function to handle scroll events
+        function handleScroll() {
+            // Check if the user has reached the end of the webpage
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight && count<=27) {
+                console.log("End of webpage reached!");
+                document.getElementById('output').innerHTML += `<tr>
+                    <td><img id="image-${count}" src="http://picsum.photos/200?random=${count}" alt="..." /></td>
+                    <td><img id="image-${count + 1}" src="http://picsum.photos/200?random=${count + 1}" alt="..." /></td>
+                    <td><img id="image-${count + 2}" src="http://picsum.photos/200?random=${count + 2}" alt="..." /></td>
+                    </tr>`
+                    count = count + 3
+                    
+                // You can add your code or actions here
+            }
+        }
+
+        // Attach the handleScroll function to the scroll event
+        window.addEventListener('scroll', handleScroll);
+    </script>
+</body>
+</html>

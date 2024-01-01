@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Creating object using 1st technique</h1>
+    <table border="1" cellpadding="10" width="80%">
+        <tr>
+            <td id="name"></td>
+            <td id="age"></td>
+            <td id="gender"></td>
+            <td id="weight"></td>
+        </tr>
+    </table>
+    <script>
+        var student = {
+            Name:"Humbal Kuldeep",
+            Age:21,
+            Weight:80,
+            Gender:true,
+            Display:function(){
+                document.getElementById("name").innerHTML = this.Name;
+                document.getElementById("age").innerHTML = this.Age;
+                document.getElementById("weight").innerHTML = this.Weight;
+                document.getElementById("gender").innerHTML = (this.Gender == true) ? "Male":"Female";
+            } 
+        }
+        student.Display();
+        student.Name = "Krishna";
+        student.Age = 20;
+        student.Weight = 100;
+        student.Gender = false;
+        student.Display();
+       
+    </script>
+</body>
+</html>

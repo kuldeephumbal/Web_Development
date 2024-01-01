@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>first method of event handling</h1>
+    <table border="1" align="center" width="50%">
+        <tr>
+            <td>
+                <input type="button" value="Get current date" id="currentdate" onclick="ButtonClick(this.id)">
+            </td>
+            <td>
+                <input type="button" value="Get current time" id="currenttime" onclick="ButtonClick(this.id)">
+            </td>
+        </tr>
+        <tr>
+            <td id="date"></td>
+            <td id="time"></td>
+        </tr>
+    </table>
+    <script>
+        function ButtonClick(ButtonId)
+        {
+            // alert(ButtonId);
+            var d1 = new Date();
+            var output = '';
+            if(ButtonId === "currentdate")
+            {
+                output = d1.getDate() + "-" + (d1.getMonth() + 1) + "-" + d1.getFullYear();
+                document.getElementById('date').innerHTML=output;
+            }
+            else
+            {
+                output = d1.getHours() + ":" + d1.getMinutes() + ":" + d1.getSeconds();
+                document.getElementById('time').innerHTML=output;
+            }
+        }
+        </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="output"></h1>
+    <script>
+        window.addEventListener("load",function()
+        {
+            document.getElementById('output').innerHTML = "This is the third technique of event handler";
+        });
+        window.addEventListener("unload",function()
+        {
+            document.getElementById('output').innerHTML = "good bye";
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td{
+            text-align: center;
+            overflow: hidden;
+        }
+        image{
+            height: 200px;
+        }
+        .ZoomIn{
+            transition: transform 0.5s ease;
+            transform-origin: center center;
+            transform: scale(1.50);
+        }
+        .ZoomOut{
+            transition: transform 0.5s ease;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Second method of event handling</h1>
+    <table border="1" align="center">
+        <tr>
+            <td>
+                <img id="first" 
+                onmouseenter="ZoomInImage(this.id);" 
+                onmouseleave="ZoomOutImage(this.id);" src="http://picsum.photos/200?random=1" alt="..." />
+            </td>
+            <td>
+                <img id="second"
+                onmouseenter="ZoomInImage(this.id);" 
+                onmouseleave="ZoomOutImage(this.id);" src="http://picsum.photos/200?random=2" alt="..." />
+            </td>
+            <td>
+                <img id="third"
+                onmouseenter="ZoomInImage(this.id);" 
+                onmouseleave="ZoomOutImage(this.id);" src="http://picsum.photos/200?random=3" alt="..." />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img id="fourth"
+                onmouseenter="ZoomInImage(this.id);" 
+                onmouseleave="ZoomOutImage(this.id);" src="http://picsum.photos/200?random=4" alt="..." />
+            </td>
+            <td>
+                <img id="fifth"
+                onmouseenter="ZoomInImage(this.id);" 
+                onmouseleave="ZoomOutImage(this.id);" src="http://picsum.photos/200?random=5" alt="..." />
+            </td>
+            <td>
+                <img id="sixth"
+                onmouseenter="ZoomInImage(this.id);" 
+                onmouseleave="ZoomOutImage(this.id);" src="http://picsum.photos/200?random=6" alt="..." />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img id="seventh"
+                onmouseenter="ZoomInImage(this.id);" 
+                onmouseleave="ZoomOutImage(this.id);" src="http://picsum.photos/200?random=7" alt="..." />
+            </td>
+            <td>
+                <img id="eight"
+                onmouseenter="ZoomInImage(this.id);" 
+                onmouseleave="ZoomOutImage(this.id);" src="http://picsum.photos/200?random=8" alt="..." />
+            </td>
+            <td>
+                <img id="nine"
+                onmouseenter="ZoomInImage(this.id);" 
+                onmouseleave="ZoomOutImage(this.id);" src="http://picsum.photos/200?random=9" alt="..." />
+            </td>
+        </tr> 
+    </table>
+    <script>
+        function ZoomInImage(TagId)
+        {
+            // alert("image is zoom");
+            document.getElementById(TagId).className="ZoomIn";
+        }
+        var ZoomOutImage = function(TagId)
+        {
+            // alert("iamge zoom out");
+            document.getElementById(TagId).className="ZoomOut";
+        }
+    </script>
+</body>
+</html>

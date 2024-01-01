@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>List of all IPL teams from India</h1>
+    <table border="1" cellpadding="10" width="80%">
+        <tr>
+            <td>
+                <h2>Team Name</h2>
+                <hr>
+                <ul>
+                    <li id="team1"></li>
+                </ul>
+            </td>
+            <td>
+                <h2>Captain Name</h2>
+                <hr>
+                <ul>
+                    <li id="captain1"></li>
+                </ul>
+            </td>
+            <td>
+                <h2>City Name</h2>
+                <hr>
+                <ul>
+                    <li id="city1"></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <script>
+        var Team = {
+            TeamName:"Mumbai Indians",
+            Captain:"Rohit Sharma",
+            City:"Mumbai",
+            Display:function(){
+                document.getElementById("team1").innerHTML = this.TeamName;
+                document.getElementById("captain1").innerHTML = this.Captain;
+                document.getElementById("city1").innerHTML = this.City;
+            }
+        }
+        Team.Display();
+    </script>
+</body>
+</html>

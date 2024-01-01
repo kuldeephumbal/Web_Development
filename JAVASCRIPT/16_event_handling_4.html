@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .highlight{
+            background-color: black;
+            color: white;
+            border: 2px solid white;
+        }
+        .normal{
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+        }
+    </style>    
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-8 offset-2">
+                <form action="" method="post">
+                    <table class="table table-bordered">
+                        <tr class="table-primary">
+                            <td>
+                                <h2 align="center">EMI calculator</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="amount" class="form-label">Amount</label>
+                                <input type="text" id="amount" class="form-control" required />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="rate" class="form-label">Rate</label>
+                                <input type="text" id="rate" class="form-control" required />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="tenure" class="form-label">Tenure (year)</label>
+                                <input type="text" id="tenure" class="form-control" required />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="output" align="center"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        var Amount = document.getElementById('amount');
+        var Rate = document.getElementById('rate');
+        var Tenure = document.getElementById('tenure');
+        let HighlighText = function()
+        {
+            // console.log('hiii...');
+            document.getElementById(this.id).className = "highlight";
+        }
+        function CalculateEMI()
+        {
+            console.log("emi is successfully filled");
+            let AmountValue = Amount.value;
+            let RateValue = Rate.value;
+            let TenureValue = Tenure.value;
+            console.log(AmountValue,RateValue,TenureValue);
+            document.getElementById(this.id).className = "normal";
+            if(AmountValue == '')
+            {
+                alert("Amount can not be blank");
+                return;
+            }
+            if(isNaN(AmountValue) == true)
+            {
+                alert("invalid amount");
+                return;
+            }
+            if(RateValue == '')
+            {
+                alert("Rate can not be blank");
+                return;
+            }
+            if(isNaN(RateValue) == true)
+            {
+                alert("invalid rate");
+                return;
+            }
+            if(TenureValue == '')
+            {
+                alert("Tenure can not be blank");
+                return;
+            }
+            if(isNaN(TenureValue) == true)
+            {
+                alert("invalid tenure");
+                return;
+            }
+            AmountValue = parseInt(AmountValue);
+            RateValue = parseInt(RateValue);
+            TenureValue = parseInt(TenureValue);
+
+            RateValue  = (RateValue / 12) / 100;
+            TenureValue = TenureValue * 12;
+            const emi = AmountValue * RateValue * Math.pow(1 + RateValue, TenureValue) /(Math.pow(1 + RateValue, 
+            TenureValue)-1);
+            document.getElementById("output").innerHTML = emi.toFixed(0);
+        }
+        Amount.onblur = CalculateEMI;
+        Amount.onfocus = HighlighText;
+        Rate.onblur = CalculateEMI;
+        Rate.onfocus = HighlighText;
+        Tenure.onblur = CalculateEMI;
+        Tenure.onfocus = HighlighText;
+
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</body>
+</html>

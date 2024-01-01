@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>3nd technique of object in javascript</h1>
+    <table border="1" width="80%" cellpadding="10">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Price</td>
+                <td>Weight</td>
+                <td>Price per gram</td>
+            </tr>
+        </thead>
+        <tbody id="output">
+
+        </tbody>
+    </table>
+</body>
+<script>
+    function product(name,price,weight,){
+        this.name = name,
+        this.price = price,
+        this.weight = weight,
+        this.price_per_gram = this.price / this.weight,
+        this.display = function(){
+            document.getElementById("output").innerHTML += `<tr>
+                <td>${this.name}</td>
+                <td>${this.price}</td>
+                <td>${this.weight}</td>
+                <td>${this.price_per_gram}</td>
+                </tr>`
+        }
+    }
+    var p1 = new product("lux",50,30);
+    p1.display();
+</script>
+</html>
