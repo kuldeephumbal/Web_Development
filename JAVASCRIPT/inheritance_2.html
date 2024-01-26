@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>example of multilevel level inheritance</h1>
+    <script>
+        class KB
+        {
+            constructor(bytes)
+            {
+                this.bytes = bytes;
+                console.log("KB class constructor called");
+            }
+            getKB()
+            {
+                let kb = this.bytes / 1024;
+                return kb;
+            }
+        }
+        class MB extends KB
+        {
+            constructor(bytes)
+            {
+                super(bytes); //calling parent class constructor
+                console.log("MB class constructor is called");
+            }
+            getMB()
+            {
+                let mb = super.getKB() / 1024;
+                return mb;
+            }
+        }
+        class GB extends MB
+        {
+            constructor(bytes)
+            {
+                super(bytes); // calling parent class constructor
+                console.log("GB class constructor is called");
+            }
+            getGB()
+            {
+                let gb = super.getMB() / 1024;
+                return gb;
+            }
+        }
+        var bytes = parseInt(prompt("Enter number"));
+        var g1 = new GB(bytes);
+        var kb = g1.getKB();
+        var mb = g1.getMB();
+        var gb = g1.getGB();
+        console.log("kilobytes = " + kb);
+        console.log("megabytes = " + mb);
+        console.log("gigabytes = " + gb);
+    </script>
+</body>
+</html>

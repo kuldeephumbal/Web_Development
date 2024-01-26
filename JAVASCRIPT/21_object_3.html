@@ -10,10 +10,10 @@
     <table border="1" width="80%" cellpadding="10">
         <thead>
             <tr>
-                <td>Name</td>
-                <td>Price</td>
-                <td>Weight</td>
-                <td>Price per gram</td>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Weight</th>
+                <th>Price per gram</th>
             </tr>
         </thead>
         <tbody id="output">
@@ -26,7 +26,7 @@
         this.name = name,
         this.price = price,
         this.weight = weight,
-        this.price_per_gram = this.price / this.weight,
+        this.price_per_gram = (price / weight).toFixed(2),
         this.display = function(){
             document.getElementById("output").innerHTML += `<tr>
                 <td>${this.name}</td>

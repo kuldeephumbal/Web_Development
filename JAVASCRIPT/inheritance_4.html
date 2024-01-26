@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Example of hybrid inheritance</h1>
+    <script>
+        class myMath 
+        {
+            getPi() {
+                return 3.141516;
+            }
+            getSquare(number) {
+                let square = number * number;
+                return square;
+            }
+        }
+        class circle extends myMath {
+            constructor(radius) {
+                super();
+                this.radius = radius;
+            }
+            getArea() {
+                let area = super.getPi() * super.getSquare(this.radius);
+                return area;
+            }
+        }
+        class sphere extends circle {
+            constructor(radius) {
+                super(radius);
+                console.log("sphere class constructor is called....");
+            }
+            getSurfaceArea() {
+                let surfaceArea = 4 * super.getArea();
+                return surfaceArea;
+            }
+        }
+        class cylinder extends myMath {
+            constructor(radius, height) {
+                super();
+                this.radius = radius;
+                this.height = height;
+            }
+            getSurfaceArea() 
+            {
+                let area = (2 * super.getPi() * this.radius * (this.radius + this.height));
+                return area;
+            }
+        }
+        var radius = parseInt(prompt("Enter radius"));
+        var c1 = new circle(radius);
+        var area = c1.getArea();
+        console.log("Circle area = ", area);
+
+        var s1 = new sphere(radius);
+        var surfacearea = s1.getSurfaceArea();
+        console.log("sphere surfacearea = ", surfacearea);
+
+        var height = parseInt(prompt("Enter height"));
+        var cy1 = new cylinder(height, radius);
+        var cylinderSurfaceArea = cy1.getSurfaceArea();
+        console.log("cylinder surfacearea = ", cylinderSurfaceArea);
+    </script>
+</body>
+
+</html>

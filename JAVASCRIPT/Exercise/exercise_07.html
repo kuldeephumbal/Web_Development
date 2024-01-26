@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Example of single level heritance</h1>
+    <script>
+        class inches{
+            constructor(length)
+            {
+                this.length = length;
+                console.log("Inches class constructor is called...");
+            }
+            getInches()
+            {
+                let inches = this.length;
+                return inches;
+            }
+        }
+        class meter extends inches{
+            constructor(length)
+            {
+                super(length);
+            }
+            getMeter()
+            {
+                let meter = super.getInches() / 40;
+                return meter;
+            }
+        }
+        class kilometer extends meter{
+            constructor(length)
+            {
+                super(length);
+            }
+            getKilometer()
+            {
+                let kilometer = super.getMeter() / 1000;
+                return kilometer;
+            }
+        }
+        var length = parseInt(prompt("Enter number"));
+        var k1 = new kilometer(length);
+        var I = k1.getInches();
+        var M = k1.getMeter();
+        var K = k1.getKilometer();
+
+        console.log("Inches = ",I);
+        console.log("Meter = ",M);
+        console.log("Kilometer = ",K);
+
+
+    </script>
+</body>
+</html>

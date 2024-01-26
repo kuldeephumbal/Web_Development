@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>object disstructing</h1>
+    <hr/>
+    <script>
+        class MyMath{
+            getPi()
+            {
+                return 3.141516;
+            }
+            getSquare(number)
+            {
+                let square = number * number;
+                return square;
+            }
+        }
+        class circle extends MyMath{
+            constructor(radius)
+            {
+                super();
+                this.radius = radius;
+            }
+            getArea()
+            {
+                let area = super.getPi() * super.getSquare(this.radius);
+                return area;
+            }
+        }
+        var radius = parseInt(prompt("Enter radius"));
+        var c1 = new circle(radius);
+        // var area = c1.getArea();
+        var getArea = c1.getArea;
+        var getArea = c1.getArea.bind(c1);
+        var area = getArea();
+        console.log("Area = " + area);
+    </script>
+</body>
+</html>

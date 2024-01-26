@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Example of single level inheritance</h1>
+    <script>
+        class grams {
+            constructor(number) {
+                this.number = number;
+                console.log("grams class constructor is called...");
+            }
+            getGrams() {
+                let grams = this.number;
+                return grams;
+            }
+        }
+        class kilograms extends grams {
+            constructor(number) {
+                super(number);
+            }
+            getKilograms() {
+                let kilograms = super.getGrams() / 1000;
+                return kilograms;
+            }
+        }
+        class tons extends kilograms {
+            constructor(number) {
+                super(number);
+            }
+            getTons() {
+                let tons = super.getKilograms() / 1000; 
+                return tons;
+            }
+        }
+
+        var number = parseInt(prompt("Enter number"));
+        var g1 = new tons(number);
+        var G = g1.getGrams();
+        var K = g1.getKilograms();
+        var T = g1.getTons();
+        console.log("Grams = ", G);
+        console.log("kilograms = ", K);
+        console.log("tons = ", T);
+    </script>
+</body>
+
+</html>

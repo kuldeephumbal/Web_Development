@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Example of hierachical inheritance</h1>
+    <script>
+        class MyMath
+        {
+            getpi()
+            {
+                return 3.141516;
+            }
+            getsquare()
+            {
+                let square = number * number;
+                return square;
+            }
+        }
+        class circle extends MyMath
+        {
+             constructor(radius)
+             {
+                super();
+                this.radius = radius;
+             }
+             getarea()
+             {
+                let area = super.getpi() * super.getsquare(this.radius);
+                return area;
+             }
+        }
+        class cylinder extends MyMath
+        {
+            constructor(radius,hieght)
+            {
+                super();
+                this.radius = radius;
+                this.height = heigth;
+            }
+            getsurfacearea()
+            {
+                let area = (2 * getpi() * this.radius * this.height) + (2 * super.getpi() * super.getsquare(this.radius))
+                return area;
+            }
+        }
+    </script>
+</body>
+</html>

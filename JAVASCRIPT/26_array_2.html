@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 align="center">working array with loop</h1>
+    <hr/>
+    <table align="center" border="2" cellpadding="10" cellspacing="10"width="80%"  id="output">
+        
+    </table>
+    <script>
+        var country = [
+            "Argentina",
+            "Australia",
+            "Brazil",
+            "Canada",
+            "China",
+            "France",
+            "Germany",
+            "India",
+            "Italy",
+            "Japan",
+            "Mexico",
+            "Netherlands",
+            "Russia",
+            "South Africa",
+            "Spain",
+            "Sweden",
+            "Switzerland",
+            "United Kingdom",
+            "United States",
+            "Vietnam"
+        ];
+        var temp = ``;
+        for(let position=0;position<20;position++)
+        {
+            console.log(position,country[position]);
+            temp += `<tr>
+                <td>${country[position]}</td>
+                </tr>`;
+        }
+        document.getElementById("output").innerHTML = temp;
+    </script>
+</body>
+
+</html>
