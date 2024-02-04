@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row" id="output">
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script>
+        const countries = [
+            {
+                name: "USA",
+                currency: "USD",
+                capital: "Washington, D.C.",
+                flagLink: "https://flagcdn.com/us.svg"
+            },
+            {
+                name: "Canada",
+                currency: "CAD",
+                capital: "Ottawa",
+                flagLink: "https://flagcdn.com/ca.svg"
+            },
+            {
+                name: "United Kingdom",
+                currency: "GBP",
+                capital: "London",
+                flagLink: "https://flagcdn.com/gb.svg"
+            },
+            {
+                name: "Germany",
+                currency: "EUR",
+                capital: "Berlin",
+                flagLink: "https://flagcdn.com/de.svg"
+            },
+            {
+                name: "Japan",
+                currency: "JPY",
+                capital: "Tokyo",
+                flagLink: "https://flagcdn.com/jp.svg"
+            },
+            {
+                name: "Australia",
+                currency: "AUD",
+                capital: "Canberra",
+                flagLink: "https://flagcdn.com/au.svg"
+            },
+            {
+                name: "Brazil",
+                currency: "BRL",
+                capital: "Brasília",
+                flagLink: "https://flagcdn.com/br.svg"
+            },
+            {
+                name: "India",
+                currency: "INR",
+                capital: "New Delhi",
+                flagLink: "https://flagcdn.com/in.svg"
+            },
+            {
+                name: "South Africa",
+                currency: "ZAR",
+                capital: "Pretoria",
+                flagLink: "https://flagcdn.com/za.svg"
+            },
+            {
+                name: "China",
+                currency: "CNY",
+                capital: "Beijing",
+                flagLink: "https://flagcdn.com/cn.svg"
+            }
+        ];
+
+        console.log(countries);
+
+
+        countries.map(function (item) {
+            //object destructuring
+            let {flagLink:photo,capital:cap,currency:cur,name:name} = item;
+            let design = `
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 mt-3">
+                <div class="card">
+                    <img src=${photo} alt="" class="img-fluid img-thumnail" />
+                    <div class="card-body">
+                        <h2>${name}</h2>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">${cap}</li>
+                            <li class="list-group-item">${cur}</li>
+                        </ul>                        
+                    </div>
+                </div>
+            </div>`
+            document.getElementById("output").innerHTML += design;
+
+        })
+
+    </script>
+</body>
+
+</html>

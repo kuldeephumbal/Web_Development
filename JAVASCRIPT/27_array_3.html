@@ -10,9 +10,9 @@
 <body>
     <h1 align="center">working array with loop</h1>
     <hr />
-    <table align="center" border="2" cellpadding="10" cellspacing="10" width="80%" id="output">
+    <ol id="output">
 
-    </table>
+    </ol>
     <script>
         var country = [
             "Argentina",
@@ -36,15 +36,11 @@
             "United States",
             "Vietnam"
         ];
-        var temp = ``;
-        temp += `<tr>`
-        for (let position = 0; position < country.length; position++) {
-            console.log(position, country[position]);
-            if (position != 0 && position % 3 == 0)
-                temp += `</tr><tr>`;
-            temp += `<td>${country[position]}</td>`
-        }
-        temp += `</tr>`
+        var temp = `<li>India</li>`;
+        country.map(function(item,index){
+            console.log(item,index + 1);
+            temp += `<li>${item}</li>`;
+        })
         document.getElementById("output").innerHTML = temp;
     </script>
 </body>

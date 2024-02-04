@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .card {
+            height: 100%;
+        }
+
+        .card img {
+            object-fit: cover;
+            height: 300px;
+            /* Set a fixed height for the images */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="h1 bg-warning p-4">12 Jyotirlingas temples</div>
+            </div>
+        </div>
+        <div class="row" id="output">
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script>
+        const jyotirlingas = [
+            {
+                name: "Somnath",
+                city: "Veraval",
+                state: "Gujarat",
+                templePhoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Somanath_mandir_%28cropped%29.jpg/1024px-Somanath_mandir_%28cropped%29.jpg"
+            },
+            {
+                name: "Mallikarjuna",
+                city: "Srisailam",
+                state: "Andhra Pradesh",
+                templePhoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Srisailam.jpg/800px-Srisailam.jpg"
+            },
+            {
+                name: "Mahakaleshwar",
+                city: "Ujjain",
+                state: "Madhya Pradesh",
+                templePhoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Mahakal_Temple_Ujjain.JPG/800px-Mahakal_Temple_Ujjain.JPG"
+            },
+            {
+                name: "Omkareshwar",
+                city: "Mandhata Island",
+                state: "Madhya Pradesh",
+                templePhoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Omkareshwar_Temple_02.jpg/1280px-Omkareshwar_Temple_02.jpg"
+            },
+            {
+                name: "Kedarnath",
+                city: "Kedarnath",
+                state: "Uttarakhand",
+                templePhoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Kedarnath_Temple_in_Rainy_season.jpg/330px-Kedarnath_Temple_in_Rainy_season.jpg"
+            },
+            {
+                name: "Bhimashankar",
+                city: "Pune",
+                state: "Maharashtra",
+                templePhoto: "https://upload.wikimedia.org/wikipedia/commons/d/d7/Bhimashankar.jpg"
+            },
+            {
+                name: "Kashi Vishwanath",
+                city: "Varanasi",
+                state: "Uttar Pradesh",
+                templePhoto: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Benares-_The_Golden_Temple%2C_India%2C_ca._1915_%28IMP-CSCNWW33-OS14-66%29.jpg/800px-Benares-_The_Golden_Temple%2C_India%2C_ca._1915_%28IMP-CSCNWW33-OS14-66%29.jpg"
+            },
+            {
+                name: "Trimbakeshwar",
+                city: "Nashik",
+                state: "Maharashtra",
+                templePhoto: "https://upload.wikimedia.org/wikipedia/commons/1/12/Trimbakeshwar_Temple-Nashik-Maharashtra-1.jpg"
+            },
+            {
+                name: "Baidyanath",
+                city: "Deoghar",
+                state: "Jharkhand",
+                templePhoto: "https://upload.wikimedia.org/wikipedia/commons/b/b3/Baidyanathdham.jpg"
+            },
+            {
+                name: "Nageshwar",
+                city: "Dwarka",
+                state: "Gujarat",
+                templePhoto: "https://upload.wikimedia.org/wikipedia/commons/d/dc/%E0%A4%B6%E0%A5%8D%E0%A4%B0%E0%A5%80_%E0%A4%A8%E0%A4%BE%E0%A4%97%E0%A5%87%E0%A4%B6%E0%A5%8D%E0%A4%B5%E0%A4%B0_%E0%A4%9C%E0%A5%8D%E0%A4%AF%E0%A5%8B%E0%A4%A4%E0%A4%BF%E0%A4%B0%E0%A5%8D%E0%A4%B2%E0%A4%BF%E0%A4%82%E0%A4%97_%E0%A4%AE%E0%A4%82%E0%A4%A6%E0%A4%BF%E0%A4%B0.jpg"
+            },
+            {
+                name: "Rameshwar",
+                city: "Rameswaram",
+                state: "Tamil Nadu",
+                templePhoto: "https://upload.wikimedia.org/wikipedia/commons/6/60/Ramanathar-temple.jpg"
+            },
+            {
+                name: "Grishneshwar",
+                city: "Aurangabad",
+                state: "Maharashtra",
+                templePhoto: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Grishneshwar_temple_in_Aurangabad_district.jpg"
+            }
+        ];
+
+        console.log(jyotirlingas);
+
+        var count = 0;
+        jyotirlingas.map(function (place, index) {
+            let temple = `<div class="col-lg-3 col-md-4 col-sm-6 col-12 mt-4">
+                    <div class="card">
+                        <img src=${place.templePhoto} alt="" class="img-fluid img-thumnail" />
+                        <div class="card-body">
+                            <h2>${count + 1}. ${place.name}</h2>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">City: ${place.city}</li>
+                                <li class="list-group-item">State: ${place.state}</li>
+                                </ul>
+                                </div>
+                                </div>
+                                </div>`
+            count = count + 1;
+            document.getElementById("output").innerHTML += temple;
+        })
+
+    </script>
+</body>
+
+</html>

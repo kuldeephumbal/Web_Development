@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h1>ES6 operator</h1>
+            </div>
+            <div class="col-3">
+                <ol class="list_group" id="asia">
+
+                </ol>
+            </div>
+            <div class="col-3">
+                <ol class="list_group" id="europe">
+
+                </ol>
+            </div>
+            <div class="col-3">
+                <ol class="list_group" id="asia_europe">
+
+                </ol>
+            </div>
+            <div class="col-3">
+                <ul class="list_group" id="cars">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script>
+        let displayArray = (array, tag) => {
+            var a1 = document.getElementById(tag);
+            array.map(function (item) {
+                a1.innerHTML += `<li class="list_group_item">${item}</li>`;
+            });
+        }
+        const asianCountries = [
+            "Afghanistan",
+            "Armenia",
+            "Azerbaijan",
+            "Bahrain",
+            "Bangladesh",
+            "Bhutan",
+            "Brunei",
+            "Cambodia",
+            "China",
+            "Cyprus",
+            "Georgia",
+            "India",
+            "Malaysia",
+            "Maldives",
+            "Uzbekistan",
+            "Vietnam",
+            "Yemen"
+        ];
+
+        console.log(asianCountries);
+
+        const europeanCountryNames = [
+            "Albania",
+            "Andorra",
+            "Austria",
+            "Belarus",
+            "Belgium",
+            "Bulgaria",
+            "Croatia",
+            "Cyprus",
+            "Denmark",
+            "Estonia",
+            "Finland",
+            "France",
+            "Germany",
+            "Greece",
+            "Hungary",
+            "Iceland",
+            "Ireland",
+            "Italy",
+            "Latvia",
+        ];
+
+        console.log(europeanCountryNames);
+
+        var asia_european = [...asianCountries, ...europeanCountryNames];
+
+        displayArray(asianCountries, 'asia');
+        displayArray(europeanCountryNames, 'europe');
+        displayArray(asia_european, 'asia_europe');
+
+        const car1 = {
+            name: "Toyota Camry",
+            seats: 5,
+            price: 25000,
+            color: "Silver"
+        };
+
+        const car2 = {
+            name: "Honda Civic",
+            seats: 5,
+            color: "Blue",
+            type: "petrol"
+        };
+
+        console.log(car1);
+        console.log(car2);
+
+        var bothCar = {...car1,...car2};
+        console.log(bothCar);
+
+        var cars = document.getElementById("cars");
+        for(let key in bothCar)
+        {
+            cars.innerHTML += `<li class="list_group_item">${key} = ${bothCar[key]}</li>`;
+        }
+    </script>
+</body>
+
+</html>

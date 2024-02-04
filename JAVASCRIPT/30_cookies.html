@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <div class="card mt-4">
+                    <div class="card-header text-bg-primary">
+                        <h1>Cookies in javascript</h1>
+                    </div>
+                    <div class="card-body">
+                        <form action="" onsubmit="return Addcookies()">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label for="cookiesname" class="form-label">Cookies name</label>
+                                    <input type="text" name="cookiesname" id="cookiesname" class="form-control" />
+                                </div>
+                                <div class="col-12">
+                                    <label for="cookiesvalue" class="form-label">Cookies value</label>
+                                    <input type="text" name="cookiesvalue" id="cookiesvalue" class="form-control" />
+                                </div>
+                                <div class="col-12 text-end mt-3">
+                                    <button type="submit" class="btn btn-success">Add cookies</button>
+                                    <button type="button" class="btn btn-primary" onclick="Fetch()">Fetch
+                                        cookies</button>
+                                    <button type="button" class="btn btn-danger" onclick="Delete()">Delete
+                                        cookies</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="cookies.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script>
+        function Addcookies() {
+            let cookiesname = document.getElementById("cookiesname").value;
+            let cookiesvalue = document.getElementById("cookiesvalue").value;
+            console.log(cookiesname, cookiesvalue);
+            //store value in cookies
+            setCookie(cookiesname, cookiesvalue);
+            alert("cookies has been created.....");
+            document.getElementById("cookiesname").value = "";
+            document.getElementById("cookiesvalue").value = "";
+            return false;
+
+        }
+        function Fetch() {
+            let cookiesname = document.getElementById("cookiesname").value;
+            if (cookiesname == "")
+                alert("name can not be blank");
+            else {
+                let cookiesvalue = getCookie(cookiesname);
+                if (cookiesvalue == '')
+                    alert('no cookie found');
+                else
+                    document.getElementById('cookiesvalue').value = cookiesvalue;
+            }
+        }
+        function Delete() 
+        {
+            let cookiesname = document.getElementById("cookiesname").value;
+            if (cookiesname == "")
+                alert("name can not be blank");
+            else 
+            {
+                let cookiesvalue = getCookie(cookiesname);
+                if (cookiesvalue == '')
+                    alert('no cookie found');
+                else 
+                {
+                    setCookie(cookiesname,'',-1);
+                    alert("cookies has been deleted...");
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
