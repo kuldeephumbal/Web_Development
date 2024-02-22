@@ -1,6 +1,8 @@
+import MyComponent from "./editor";
 import Menu from "./Menu";
 export default function AdminComposeEmail() {
     return (<>
+<MyComponent />
         <Menu />
         <main id="main" className="main">
             <div className="container">
@@ -27,7 +29,7 @@ export default function AdminComposeEmail() {
                                         <textarea id="edit" className="form-control" style={{ "margin-top": "30px" }} placeholder="Type some text" defaultValue={""} />
                                     </div></form>
                                 <div className="mt-3">
-                                    <button type="submit" className="btn btn-primary">Send</button>
+                                    <button type="submit" className="btn btn-primary me-1">Send</button>
                                     <button type="reset" className="btn btn-danger">Reset</button>
                                 </div>
                             </div>

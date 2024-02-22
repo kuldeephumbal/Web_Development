@@ -35,19 +35,19 @@ export default function Menu()
             </li>
             <li className="nav-item shadow-sm">
               <a className="nav-link collapsed" href="doctor-profile.html">
-                <i className="fa-solid fa-house" />
+                <i className="fa-solid fa-user-doctor" />
                 <span>My profile</span>
               </a>
             </li>
             <li className="nav-item shadow-sm">
               <a className="nav-link collapsed" href="doctor-service.html">
-                <i className="fa-solid fa-house" />
+              <i className="fa-solid fa-box-open" />
                 <span>My pakage</span>
               </a>
             </li>
             <li className="nav-item shadow-sm">
               <a className="nav-link collapsed" href="doctor-assistance.html">
-                <i className="fa-solid fa-house" />
+              <i className="fa-solid fa-users" />
                 <span>My assistents</span>
               </a>
             </li>
@@ -59,13 +59,13 @@ export default function Menu()
             </li>
             <li className="nav-item shadow-sm">
               <a className="nav-link collapsed" href="admin-change-password.html">
-                <i className="fa-solid fa-house" />
+                <i className="fa-solid fa-key" />
                 <span>Change password</span>
               </a>
             </li>
             <li className="nav-item shadow-sm">
               <a className="nav-link collapsed" href="#">
-                <i className="fa-solid fa-house" />
+              <i className="fa-solid fa-right-from-bracket" />
                 <span>Log out</span>
               </a>
             </li>
