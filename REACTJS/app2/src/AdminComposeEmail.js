@@ -1,4 +1,4 @@
-import MyComponent from "./editor";
+import MyComponent from "./Editor";
 import Menu from "./Menu";
 export default function AdminComposeEmail() {
     return (<>
