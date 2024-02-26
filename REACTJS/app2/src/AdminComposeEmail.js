@@ -27,7 +27,8 @@ export default function AdminComposeEmail() {
                                     </div>
                                     <div className="form-group mt-3" id="editor">
                                         <textarea id="edit" className="form-control" style={{ "margin-top": "30px" }} placeholder="Type some text" defaultValue={""} />
-                                    </div></form>
+                                    </div>
+                                    </form>
                                 <div className="mt-3">
                                     <button type="submit" className="btn btn-primary me-1">Send</button>
                                     <button type="reset" className="btn btn-danger">Reset</button>
