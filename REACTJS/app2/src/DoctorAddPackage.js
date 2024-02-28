@@ -13,7 +13,8 @@ export default function DoctorAddPackage() {
                     <div className="col-12">
                         <div className="card">
                             <div className="card-header text-bg-primary h4 d-flex justify-content-between">Add new package
-                                <a href="admin-package.html" className="btn btn-light"><i className="fa-solid fa-angle-left" /> Back</a>
+                                <a href="admin-package.html" className="btn btn-light"><i className="fa-solid fa-angle-left" /> 
+                                 Back</a>
                             </div>
                             <div className="card-body mt-2">
                                 <form className="row g-3 needs-validation" noValidate>
@@ -50,7 +51,6 @@ export default function DoctorAddPackage() {
                 </div>
             </div>
         </main>
-
     </>
     );
 }
