@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 export default function Menu() {
   return (<>
     <header id="header" className="header fixed-top d-flex align-items-center">
       <div className="d-flex align-items-center justify-content-between">
-        <a href="index.html" className="logo d-flex align-items-center">
+        <link to="index.html" className="logo d-flex align-items-center">
           <img src="../logo.png" />
           <p className="fs-4 my-1 text-dark">Doctor Appointment</p>
-        </a>
+        </link>
         <i className="bi bi-list toggle-sidebar-btn" />
       </div>
       {/* End Logo */}
@@ -15,58 +16,58 @@ export default function Menu() {
     <aside id="sidebar" className="sidebar">
       <ul className="sidebar-nav" id="sidebar-nav">
         <li className="nav-item shadow-sm">
-          <a className="nav-link collapsed" href="admin-home.html">
+          <link className="nav-link collapsed" to="admin-home.html">
             <i className="fa-solid fa-house" />
             <span>Home</span>
-          </a>
+          </link>
         </li>
         <li className="nav-item shadow-sm">
-          <a className="nav-link collapsed" href="doctor-profile.html">
+          <link className="nav-link collapsed" to="doctor-profile.html">
             <i className="fa-solid fa-user-doctor" />
             <span>My profile</span>
-          </a>
+          </link>
         </li>
         <li className="nav-item shadow-sm">
-          <a className="nav-link collapsed" href="admin-doctor-management.html">
+          <link className="nav-link collapsed" to="admin-doctor-management.html">
             <i className="fa-solid fa-stethoscope" />
             <span>Doctors management</span>
-          </a>
+          </link>
         </li>
         <li className="nav-item shadow-sm">
-          <a className="nav-link collapsed" href="doctor-home.html">
+          <link className="nav-link collapsed" to="doctor-home.html">
             <i className="fa-solid fa-house" />
             <span>Home</span>
-          </a>
+          </link>
         </li>
         <li className="nav-item shadow-sm">
-          <a className="nav-link collapsed" href="doctor-service.html">
+          <link className="nav-link collapsed" to="doctor-service.html">
             <i className="fa-solid fa-box-open" />
             <span>My pakage</span>
-          </a>
+          </link>
         </li>
         <li className="nav-item shadow-sm">
-          <a className="nav-link collapsed" href="doctor-assistance.html">
+          <link className="nav-link collapsed" to="doctor-assistance.html">
             <i className="fa-solid fa-users" />
             <span>My assistents</span>
-          </a>
+          </link>
         </li>
         <li className="nav-item shadow-sm">
-          <a className="nav-link collapsed" href="assistent-home.html">
+          <link className="nav-link collapsed" to="assistent-home.html">
             <i className="fa-solid fa-house" />
             <span>Home</span>
-          </a>
+          </link>
         </li>
         <li className="nav-item shadow-sm">
-          <a className="nav-link collapsed" href="admin-change-password.html">
+          <link className="nav-link collapsed" to="admin-change-password.html">
             <i className="fa-solid fa-key" />
             <span>Change password</span>
-          </a>
+          </link>
         </li>
         <li className="nav-item shadow-sm">
-          <a className="nav-link collapsed" href="#">
+          <link className="nav-link collapsed" to="#">
             <i className="fa-solid fa-right-from-bracket" />
             <span>Log out</span>
-          </a>
+          </link>
         </li>
       </ul>
     </aside>

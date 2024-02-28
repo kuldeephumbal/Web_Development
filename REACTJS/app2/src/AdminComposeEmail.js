@@ -1,8 +1,6 @@
-import MyComponent from "./Editor";
 import Menu from "./Menu";
 export default function AdminComposeEmail() {
     return (<>
-<MyComponent />
         <Menu />
         <main id="main" className="main">
             <div className="container">
@@ -19,16 +17,19 @@ export default function AdminComposeEmail() {
                                 <form>
                                     <div className="form-group">
                                         <label htmlFor="recipient" className="form-label">To</label>
-                                        <input type="email" className="form-control" defaultValue="rahul@gmail.com" id="recipient" placeholder="Enter recipient email" readOnly />
+                                        <input type="email" className="form-control" defaultValue="rahul@gmail.com" id="recipient" placeholder="Enter recipient 
+                                         email" readOnly />
                                     </div>
                                     <div className="form-group mt-3">
                                         <label htmlFor="subject" className="form-label">Subject</label>
                                         <input type="text" className="form-control" id="subject" placeholder="Enter subject" />
                                     </div>
                                     <div className="form-group mt-3" id="editor">
-                                        <textarea id="edit" className="form-control" style={{ "margin-top": "30px" }} placeholder="Type some text" defaultValue={""} />
+                                    <label htmlFor="edit" className="form-label">Message</label>
+                                        <textarea id="edit" className="form-control" style={{ "margin-top": "2px" }} placeholder="Type some text" defaultValue= 
+                                         {""} />
                                     </div>
-                                    </form>
+                                </form>
                                 <div className="mt-3">
                                     <button type="submit" className="btn btn-primary me-1">Send</button>
                                     <button type="reset" className="btn btn-danger">Reset</button>
