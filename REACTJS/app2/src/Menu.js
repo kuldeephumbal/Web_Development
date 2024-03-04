@@ -3,10 +3,10 @@ export default function Menu() {
   return (<>
     <header id="header" className="header fixed-top d-flex align-items-center">
       <div className="d-flex align-items-center justify-content-between">
-        <link to="index.html" className="logo d-flex align-items-center">
+        <Link to="index.html" className="logo d-flex align-items-center">
           <img src="../logo.png" />
           <p className="fs-4 my-1 text-dark">Doctor Appointment</p>
-        </link>
+        </Link>
         <i className="bi bi-list toggle-sidebar-btn" />
       </div>
       {/* End Logo */}
@@ -16,58 +16,58 @@ export default function Menu() {
     <aside id="sidebar" className="sidebar">
       <ul className="sidebar-nav" id="sidebar-nav">
         <li className="nav-item shadow-sm">
-          <link className="nav-link collapsed" to="admin-home.html">
+          <Link className="nav-link collapsed" to="admin-home.html">
             <i className="fa-solid fa-house" />
             <span>Home</span>
-          </link>
+          </Link>
         </li>
         <li className="nav-item shadow-sm">
-          <link className="nav-link collapsed" to="doctor-profile.html">
+          <Link className="nav-link collapsed" to="doctor-profile.html">
             <i className="fa-solid fa-user-doctor" />
             <span>My profile</span>
-          </link>
+          </Link>
         </li>
         <li className="nav-item shadow-sm">
-          <link className="nav-link collapsed" to="admin-doctor-management.html">
+          <Link className="nav-link collapsed" to="admin-doctor-management.html">
             <i className="fa-solid fa-stethoscope" />
             <span>Doctors management</span>
-          </link>
+          </Link>
         </li>
         <li className="nav-item shadow-sm">
-          <link className="nav-link collapsed" to="doctor-home.html">
+          <Link className="nav-link collapsed" to="doctor-home.html">
             <i className="fa-solid fa-house" />
             <span>Home</span>
-          </link>
+          </Link>
         </li>
         <li className="nav-item shadow-sm">
-          <link className="nav-link collapsed" to="doctor-service.html">
+          <Link className="nav-link collapsed" to="doctor-service.html">
             <i className="fa-solid fa-box-open" />
             <span>My pakage</span>
-          </link>
+          </Link>
         </li>
         <li className="nav-item shadow-sm">
-          <link className="nav-link collapsed" to="doctor-assistance.html">
+          <Link className="nav-link collapsed" to="doctor-assistance.html">
             <i className="fa-solid fa-users" />
             <span>My assistents</span>
-          </link>
+          </Link>
         </li>
         <li className="nav-item shadow-sm">
-          <link className="nav-link collapsed" to="assistent-home.html">
+          <Link className="nav-link collapsed" to="assistent-home.html">
             <i className="fa-solid fa-house" />
             <span>Home</span>
-          </link>
+          </Link>
         </li>
         <li className="nav-item shadow-sm">
-          <link className="nav-link collapsed" to="admin-change-password.html">
+          <Link className="nav-link collapsed" to="admin-change-password.html">
             <i className="fa-solid fa-key" />
             <span>Change password</span>
-          </link>
+          </Link>
         </li>
         <li className="nav-item shadow-sm">
-          <link className="nav-link collapsed" to="#">
+          <Link className="nav-link collapsed" to="#">
             <i className="fa-solid fa-right-from-bracket" />
             <span>Log out</span>
-          </link>
+          </Link>
         </li>
       </ul>
     </aside>

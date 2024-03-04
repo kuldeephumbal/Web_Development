@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminLogin from './AdminLogin';
 import AdminForgotPassword from './AdminForgotPassword';
@@ -19,11 +19,11 @@ import DoctorEditAssistant from './DoctorEditAssistant';
 import DoctorEditPackage from './DoctorEditPackage';
 import NoPageFound from './NoPageFound';
 
-function MYROUTES(){
+function ROUTES(){
     return(
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<AdminLogin />} />
+                <Route index path='/' element={<AdminLogin />} />
                 <Route path='/admin-forgot-password' element={<AdminForgotPassword />} />
                 <Route path='/admin-appointments' element={<AdminAppointments />} />
                 <Route path='/admin-assistant' element={<AdminAssistant />} />
@@ -32,7 +32,7 @@ function MYROUTES(){
                 <Route path='/admin-package' element={<AdminPackage />} />
                 <Route path='/admin-compose-email' element={<AdminComposeEmail />} />
                 <Route path='/doctor-login' element={<DoctorLogin />} />
-                <Route path='/doctor-forgot-password' element={<DoctorForgotPassword />} />
+                <Route path='/doctor-forgot-passwprd' element={<DoctorForgotPassword />} />
                 <Route path='/doctor-register' element={<DoctorRegister />} />
                 <Route path='/doctor-profile' element={<DoctorProfile />} />
                 <Route path='/doctor-add-assistant' element={<DoctorAddAssistant />} />
@@ -46,4 +46,4 @@ function MYROUTES(){
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<MYROUTES />);
+root.render(<ROUTES />);

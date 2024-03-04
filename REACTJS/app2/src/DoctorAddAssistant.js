@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Menu from "./Menu";
 export default function DoctorAddAssistant() {
     return (<>
@@ -12,8 +13,8 @@ export default function DoctorAddAssistant() {
       </div>
       <div className="col-12">
         <div className="card">
-          <div className="card-header text-bg-primary h4 d-flex justify-content-between">Add new package 
-            <a href="admin-assitant.html" className="btn btn-light"><i className="fa-solid fa-angle-left" /> Back</a>
+          <div className="card-header text-bg-primary h4 d-flex justify-content-between">Add new assistance 
+            <Link to="admin-assitant.html" className="btn btn-light"><i className="fa-solid fa-angle-left" /> Back</Link>
           </div>
           <div className="card-body mt-2">
             <form className="row g-3 needs-validation" noValidate>

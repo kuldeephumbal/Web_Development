@@ -17,7 +17,8 @@ export default function AdminComposeEmail() {
                                 <form>
                                     <div className="form-group">
                                         <label htmlFor="recipient" className="form-label">To</label>
-                                        <input type="email" className="form-control" defaultValue="rahul@gmail.com" id="recipient" placeholder="Enter recipient 
+                                        <input type="email" className="form-control" defaultValue="rahul@gmail.com" 
+                                         id="recipient" placeholder="Enter recipient 
                                          email" readOnly />
                                     </div>
                                     <div className="form-group mt-3">
@@ -26,8 +27,8 @@ export default function AdminComposeEmail() {
                                     </div>
                                     <div className="form-group mt-3" id="editor">
                                     <label htmlFor="edit" className="form-label">Message</label>
-                                        <textarea id="edit" className="form-control" style={{ "margin-top": "2px" }} placeholder="Type some text" defaultValue= 
-                                         {""} />
+                                        <textarea id="edit" className="form-control" style={{ "margin-top": "2px" }} 
+                                         placeholder="Type some text" />
                                     </div>
                                 </form>
                                 <div className="mt-3">
