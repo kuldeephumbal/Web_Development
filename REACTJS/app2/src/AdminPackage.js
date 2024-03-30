@@ -1,8 +1,72 @@
+import React, { useState, useEffect } from "react";
 import Menu from "./Menu";
+import getBase from "./Api";
+import { showError, showMessage, NetworkError } from "./ToastMessage";
+import { ToastContainer } from "react-toastify";
+import { useParams } from "react-router-dom";
 export default function AdminPackage() {
+
+    let { doctorid } = useParams();
+    console.log("doctor id = ", doctorid);
+
+    let [packages, setPackage] = useState([]);
+    let [doctorName, setDoctorName] = useState('');
+
+    let displayPackage = (item) => {
+        return (<tr>
+            <td>{item.id}</td>
+            <td><b>{item.title}</b><br />
+                {item.detail}</td>
+            <td>
+                <img src="https://picsum.photos/70" className="img-fluid" />
+            </td>
+            <td>{item.charges}</td>
+            <td>{item.duration}</td>
+            <td>
+                <a href="doctor-edit-pakage.html" title="Edit"><i className="fa-solid fa-pen-to-square fa-lg ms-1" /></a>
+                <a href="#" title="delete"><i className="fa-solid fa-trash fa-lg ms-3" style={{ "color": "#ff0000" }} /></a>
+            </td>
+        </tr>);
+    }
+    let noPackageFound = function () {
+        return (<tr>
+            <td colSpan='6' className="text-danger fs-3 text-center">No Package Found</td>
+        </tr>)
+    }
+
+    useEffect(() => {
+        if (packages.length === 0) {
+
+            let apiAddress = getBase() + "package.php?doctorid=" + doctorid;
+            fetch(apiAddress)
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    let error = data[0]['error'];
+                    console.log(error);
+                    if (error !== 'no') {
+                        showError(error);
+                    }
+                    else if (data[1]['total'] === 0) {
+                        showError('no package found');
+                    }
+                    else {
+                        data.splice(0, 2);
+                        setPackage(data);
+                        setDoctorName(data[0]['name']);
+                        showMessage('Data loaded successfully');
+                    }
+                })
+                .catch((error) => {
+                    NetworkError(error);
+                });
+        }
+    });
+
     return (<>
         <Menu />
         <main id="main" className="main">
+            <ToastContainer />
             <div className="container">
                 <div className="row">
                     <div className="col-12">
@@ -12,7 +76,7 @@ export default function AdminPackage() {
                     </div>
                     <div className="col-12">
                         <div className="card">
-                            <div className="card-header text-bg-primary h4 d-flex justify-content-between">Package - (Rahul)
+                            <div className="card-header text-bg-primary h4 d-flex justify-content-between">Package - {doctorName}
                                 <a href="doctor-add-package.html" className="btn btn-light">Add packages <i className="fa-solid fa-floppy-disk ms-1" /></a>
                             </div>
                             <div className="card-body mt-3">
@@ -29,18 +93,7 @@ export default function AdminPackage() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente ipsum
-                                                    illum et accusamus? Sed eius maxime explicabo molestiae dicta esse.</td>
-                                                <td><img src="http://picsum.photos/70?random=1" alt /></td>
-                                                <td>Rs 50000</td>
-                                                <td>4 hours</td>
-                                                <td>
-                                                    <a href="doctor-edit-pakage.html" title="Edit"><i className="fa-solid fa-pen-to-square fa-lg ms-1" /></a>
-                                                    <a href="#" title="delete"><i className="fa-solid fa-trash fa-lg ms-1" style={{ "color": "#ff0000" }} /></a>
-                                                </td>
-                                            </tr>
+                                            {(packages.length > 0) ? packages.map((item) => displayPackage(item)) : noPackageFound()}
                                         </tbody>
                                     </table>
                                 </div>
@@ -50,7 +103,6 @@ export default function AdminPackage() {
                 </div>
             </div>
         </main>
-
     </>
     );
 }
