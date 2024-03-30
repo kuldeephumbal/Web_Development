@@ -12,12 +12,12 @@ export default function AdminComposeEmail() {
                     </div>
                     <div className="col-12">
                         <div className="card">
-                            <div className="card-header text-bg-primary h4">Compose Mail - [Rahul]</div>
+                            <div className="card-header text-bg-primary h4">Compose Mail - [doctorName]</div>
                             <div className="card-body mt-3">
                                 <form>
                                     <div className="form-group">
                                         <label htmlFor="recipient" className="form-label">To</label>
-                                        <input type="email" className="form-control" defaultValue="rahul@gmail.com" 
+                                        <input type="email" className="form-control" defaultValue="name@gmail.com" 
                                          id="recipient" placeholder="Enter recipient 
                                          email" readOnly />
                                     </div>
