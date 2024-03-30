@@ -25,11 +25,11 @@ function ROUTES(){
             <Routes>
                 <Route index path='/' element={<AdminLogin />} />
                 <Route path='/admin-forgot-password' element={<AdminForgotPassword />} />
-                <Route path='/admin-appointments' element={<AdminAppointments />} />
-                <Route path='/admin-assistant' element={<AdminAssistant />} />
+                <Route path='/admin-appointments/:doctorid' element={<AdminAppointments />} />
+                <Route path='/admin-assistant/:doctorid' element={<AdminAssistant />} />
                 <Route path='/admin-change-password' element={<AdminChangePassword />} />
-                <Route path='/admin-doctor-mangement' element={<AdminDoctorManagement />} />
-                <Route path='/admin-package' element={<AdminPackage />} />
+                <Route path='/admin-doctor-management' element={<AdminDoctorManagement />} />
+                <Route path='/admin-package/:doctorid' element={<AdminPackage />} />
                 <Route path='/admin-compose-email' element={<AdminComposeEmail />} />
                 <Route path='/doctor-login' element={<DoctorLogin />} />
                 <Route path='/doctor-forgot-passwprd' element={<DoctorForgotPassword />} />

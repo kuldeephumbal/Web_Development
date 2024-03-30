@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 export default function Menu() {
+  const toggleSidebar = () => {
+    document.body.classList.toggle('toggle-sidebar');
+  };
   return (<>
     <header id="header" className="header fixed-top d-flex align-items-center">
       <div className="d-flex align-items-center justify-content-between">
@@ -7,7 +10,7 @@ export default function Menu() {
           <img src="../logo.png" />
           <p className="fs-4 my-1 text-dark">Doctor Appointment</p>
         </Link>
-        <i className="bi bi-list toggle-sidebar-btn" />
+        <i className="bi bi-list toggle-sidebar-btn" onClick={toggleSidebar} />
       </div>
       {/* End Logo */}
     </header>
