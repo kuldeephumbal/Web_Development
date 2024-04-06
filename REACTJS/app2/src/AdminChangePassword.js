@@ -1,5 +1,6 @@
 import Menu from "./Menu";
 export default function AdminChangePassword() {
+
     return (<>
         <Menu />
         <main id="main" className="main">
