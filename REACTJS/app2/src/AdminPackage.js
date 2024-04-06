@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import Menu from "./Menu";
 import getBase from "./Api";
 import { showError, showMessage, NetworkError } from "./ToastMessage";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";  
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useCookies } from 'react-cookie';  
 export default function AdminPackage() {
 
     let { doctorid } = useParams();
     console.log("doctor id = ", doctorid);
 
+    let [cookies, setCookie, removeCookie] = useCookies(['theeasylearn']);
     let [packages, setPackage] = useState([]);
     let [doctorName, setDoctorName] = useState('');
 
@@ -21,11 +24,11 @@ export default function AdminPackage() {
                 <img src="https://picsum.photos/70" className="img-fluid" />
             </td>
             <td>{item.charges}</td>
-            <td>{item.duration}</td>
-            <td>
-                <a href="doctor-edit-pakage.html" title="Edit"><i className="fa-solid fa-pen-to-square fa-lg ms-1" /></a>
-                <a href="#" title="delete"><i className="fa-solid fa-trash fa-lg ms-3" style={{ "color": "#ff0000" }} /></a>
-            </td>
+            {(cookies['doctorid'] !== undefined) ? <td>
+                <Link to="/doctor-edit-package" title="Edit"><i className="fa-solid fa-pen-to-square fa-lg ms-1" /></Link>
+                <Link to="#" title="delete"><i className="fa-solid fa-trash fa-lg ms-3" style={{ "color": "#ff0000" }} /></Link>
+                </td> 
+                : <td>{item.duration}</td>}
         </tr>);
     }
     let noPackageFound = function () {
@@ -44,10 +47,10 @@ export default function AdminPackage() {
                     console.log(data);
                     let error = data[0]['error'];
                     console.log(error);
-                    if (error !== 'no') {
+                    if(error !== 'no') {
                         showError(error);
                     }
-                    else if (data[1]['total'] === 0) {
+                    else if(data[1]['total'] === 0) {
                         showError('no package found');
                     }
                     else {
@@ -56,8 +59,7 @@ export default function AdminPackage() {
                         setDoctorName(data[0]['name']);
                         showMessage('Data loaded successfully');
                     }
-                })
-                .catch((error) => {
+                }).catch((error) => {
                     NetworkError(error);
                 });
         }
@@ -66,8 +68,8 @@ export default function AdminPackage() {
     return (<>
         <Menu />
         <main id="main" className="main">
-            <ToastContainer />
             <div className="container">
+            <ToastContainer />
                 <div className="row">
                     <div className="col-12">
                         <div className="mb-3 fw-bolder">
@@ -77,7 +79,7 @@ export default function AdminPackage() {
                     <div className="col-12">
                         <div className="card">
                             <div className="card-header text-bg-primary h4 d-flex justify-content-between">Package - {doctorName}
-                                <a href="doctor-add-package.html" className="btn btn-light">Add packages <i className="fa-solid fa-floppy-disk ms-1" /></a>
+                                {(cookies['doctorid'] !== undefined) ? <Link to="/doctor-add-package" className="btn btn-light">Add Package</Link> : <></>}
                             </div>
                             <div className="card-body mt-3">
                                 <div className="table-responsive">
@@ -88,8 +90,7 @@ export default function AdminPackage() {
                                                 <th>Title details</th>
                                                 <th>Photo</th>
                                                 <th>Charge</th>
-                                                <th>Duration</th>
-                                                <th>Action</th>
+                                                {(cookies['doctorid'] !== undefined) ? <th>Action</th> : <th>Duration</th>}     
                                             </tr>
                                         </thead>
                                         <tbody>
