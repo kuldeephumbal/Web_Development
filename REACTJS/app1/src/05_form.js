@@ -7,7 +7,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 var page = (<div>
     <div className="contanier-fluid">
         <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-8 offset-2">
                 <form>
                     <h1>Contact Form</h1>
                     <div className="form-group">
