@@ -14,24 +14,11 @@ const DefaultConfig =  {
     }
 export function NetworkError(error = null)
 {
-    if(error === null)
+    if(error === null){
         showError("Either you are or server is offline");
-    else 
-    {
-        axios({
-            url:'http://www.amazon.in',
-            method:'get',
-            responseType:'text'
-        }).then((response) => {
-            showError('server is down, please contact administrator')
-        }).catch((error) => {
-            console.log(error.code);
-            if(error.code === 200)
-                showError('server is down, please contact administrator')
-            else
-                showError('you are offline, check your internet connection');
-        })
+        return;
     }
+    console.log(error); // for debugging
 }
 export function showError(message)
 {
