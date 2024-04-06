@@ -17,6 +17,7 @@ import DoctorAddAssistant from './DoctorAddAssistant';
 import DoctorAddPackage from './DoctorAddPackage';
 import DoctorEditAssistant from './DoctorEditAssistant';
 import DoctorEditPackage from './DoctorEditPackage';
+import Logout from './Logout';
 import NoPageFound from './NoPageFound';
 
 function ROUTES(){
@@ -39,6 +40,7 @@ function ROUTES(){
                 <Route path='/doctor-add-package' element={<DoctorAddPackage />} />
                 <Route path='/doctor-edit-assistant' element={<DoctorEditAssistant />} />
                 <Route path='/doctor-edit-package' element={<DoctorEditPackage />} />
+                <Route path='/logout' element={<Logout />} />
                 <Route path='*' element={<NoPageFound />} />
             </Routes>
         </BrowserRouter>
