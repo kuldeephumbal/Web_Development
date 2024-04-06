@@ -4,7 +4,9 @@ import Menu from "./Menu";
 import getBase from './Api';
 import { ToastContainer } from 'react-toastify';
 import { NetworkError, showError, showMessage } from './ToastMessage';
+import VerifyLogin from './Verifylogin';
 export default function AdminDoctorManagement() {
+    VerifyLogin();
 
     let [doctor, setDoctor] = useState([]);
 
@@ -32,15 +34,15 @@ export default function AdminDoctorManagement() {
     }
     useEffect(() => {
         if (doctor.length === 0) {
-
             let apiAddress = getBase() + "doctor.php";
+            console.log(apiAddress);
 
             fetch(apiAddress)
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log(data);
+                    // console.log(data);
                     let error = data[0]['error'];
-                    console.log(error);
+                    // console.log(error);
                     if (error !== 'no') 
                         showError(error);
                     else if (data[1]['total'] === 0) {
