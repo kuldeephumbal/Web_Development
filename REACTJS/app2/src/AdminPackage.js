@@ -4,6 +4,7 @@ import getBase from "./Api";
 import { showError, showMessage, NetworkError } from "./ToastMessage";
 import { ToastContainer } from "react-toastify";  
 import { useParams } from "react-router-dom";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { useCookies } from 'react-cookie';  
 export default function AdminPackage() {
@@ -15,6 +16,37 @@ export default function AdminPackage() {
     let [packages, setPackage] = useState([]);
     let [doctorName, setDoctorName] = useState('');
 
+    let deletePakage = function(packageid) {
+        // alert('delete package');
+        let apiAddress = getBase() + "delete_package.php?id=" + packageid;
+        axios({
+            method:'get',
+            responseType:'json',
+            url: apiAddress
+        }).then((response) => {
+            // console.log(response.data);
+            let error = response.data[0]['error'];
+            // console.log(error);
+            if(error !== 'no'){
+                showError(error);
+            }
+            else{
+                let success = response.data[1]['success'];
+                let message = response.data[2]['message'];
+                if(success === 'yes'){
+                    showMessage(message);
+                    let newPackage = packages.filter((item) => item.id !== packageid);
+                    setPackage(newPackage);
+                }
+                else{
+                    showError(message);
+                }
+            }
+        }).catch((error) => {
+            NetworkError(error);
+        });
+    }
+
     let displayPackage = (item) => {
         return (<tr>
             <td>{item.id}</td>
@@ -24,11 +56,12 @@ export default function AdminPackage() {
                 <img src="https://picsum.photos/70" className="img-fluid" />
             </td>
             <td>{item.charges}</td>
+            <td>{item.duration}</td>
             {(cookies['doctorid'] !== undefined) ? <td>
                 <Link to="/doctor-edit-package" title="Edit"><i className="fa-solid fa-pen-to-square fa-lg ms-1" /></Link>
-                <Link to="#" title="delete"><i className="fa-solid fa-trash fa-lg ms-3" style={{ "color": "#ff0000" }} /></Link>
+                <Link to="#" title="delete" onClick={() => deletePakage(item.id)}><i className="fa-solid fa-trash fa-lg ms-3" style={{ "color": "#ff0000" }} /></Link>
                 </td> 
-                : <td>{item.duration}</td>}
+                : <></> }
         </tr>);
     }
     let noPackageFound = function () {
@@ -90,7 +123,8 @@ export default function AdminPackage() {
                                                 <th>Title details</th>
                                                 <th>Photo</th>
                                                 <th>Charge</th>
-                                                {(cookies['doctorid'] !== undefined) ? <th>Action</th> : <th>Duration</th>}     
+                                                <th>Duration</th>
+                                                {(cookies['doctorid'] !== undefined) ? <th>Action</th> : <></>}     
                                             </tr>
                                         </thead>
                                         <tbody>
