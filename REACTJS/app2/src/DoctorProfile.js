@@ -1,7 +1,5 @@
-import Menu from "./Menu";
 export default function DoctorProfile() {
     return (<>
-        <Menu />
         <main>
             <div className="container">
                 <section className="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
