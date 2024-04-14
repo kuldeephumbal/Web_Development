@@ -13,54 +13,90 @@ export default function AdminAssistant() {
     // console.log(doctorid);
     
     let [cookies, setCookie, removeCookie] = useCookies(['theeasylearn']);
-    let [assistants, setAssistent] = useState([]);
+    let [assistants, setAssistant] = useState([]);
     let [doctorName, setDoctorName] = useState('');
+    let [isFetch, setIsFetch] = useState(false);
 
     let displayAssistent = function(item) {
         return(<tr>
             <td>{item.id}</td>
             <td>{item.name}</td>
+            <td>{item.email}</td>
             {(cookies['doctorid'] !== undefined) ? <td>
-            <Link to="/doctor-edit-assistant" title="Edit"><i className="fa-solid fa-pen-to-square fa-lg ms-1" /></Link>
-                <Link to="#" title="delete"><i className="fa-solid fa-trash fa-lg ms-3" style={{"color":"#ff0000"}} /></Link>
+            <Link to={"/doctor-edit-assistant/" + item.id} title="Edit"><i className="fa-solid fa-pen-to-square fa-lg ms-1" /></Link>
+                <Link to="#" title="delete" onClick={() => deleteAssistant(item.id)}><i className="fa-solid fa-trash fa-lg ms-3" style={{"color":"#ff0000"}} /></Link>
                 </td> 
-                :  <td>{item.email}</td>}
+                : <></> }
         </tr>);
+    }
+
+    let deleteAssistant = function(assistantid) {
+        let apiAddress = getBase() + "delete_assistance.php?id=" + assistantid;
+        axios({
+            method:'get',
+            responseType:'json',
+            url: apiAddress
+        }).then((response) => {
+            let error = response.data[0]['error'];
+            if(error !== 'no'){
+                showError(error);
+            }
+            else{
+                let success = response.data[1]['success'];
+                let message = response.data[2]['message'];
+                if(success === 'yes'){
+                    showMessage(message);
+                    let newAssistant = assistants.filter((item) => item.id !== assistantid);
+                    setAssistant(newAssistant);
+                }
+                else{
+                    showError(message);
+                }
+            }
+        }).catch((error) => {
+            NetworkError(error);
+        });
     }
 
     let noAssistentFound = function() {
         return(<tr>
-            <td colSpan='4' className="text-danger fs-3 text-center">No Assistent Found</td>
+            <td colSpan='4' className="text-danger fs-3 text-center">No Assistant Found</td>
         </tr>);
     
     }
 
     useEffect(() => {
-        let apiAddress = getBase() + "assitant.php?doctorid=" + doctorid;
-        if(assistants.length === 0){
-            axios({
-                method: 'get',
-                responseType:'json',
-                url: apiAddress
-            }).then((response) => {
-                console.log(response.data);
+        if(isFetch === false){
+            let apiAddress = getBase() + "assitant.php?doctorid=" + doctorid;
+            console.log(apiAddress);
+            if(assistants.length === 0){
+                axios({
+                    method: 'get',
+                    responseType:'json',
+                    url: apiAddress
+                }).then((response) => {
+                    console.log(response.data);
                 let error = response.data[0]['error'];
                 console.log(error);
                 if(error !== 'no'){
                     showError(error);
                 }
-                else if(response.data[1]['total'] === 0){
-                    showError('no assistent found');
-                }
-                else{
-                    response.data.splice(0,2);
-                    setAssistent(response.data);
-                    setDoctorName(response.data[0]['name']);
-                    showMessage('Data loaded successfully');
+                else {
+                    if(response.data[1]['total'] === 0){
+                        showError('no assistent found');
+                    }
+                    else{
+                        response.data.splice(0,2);
+                        setAssistant(response.data);
+                        setDoctorName(response.data[0]['name']);
+                        showMessage('Data loaded successfully');
+                        setIsFetch(true);
+                    }
                 }
             }).catch((error) => {
                 NetworkError(error);
             });
+        }
         }
     });
 
@@ -88,7 +124,8 @@ export default function AdminAssistant() {
                                             <tr>
                                                 <th>Sr no</th>
                                                 <th>Name</th>
-                                                {(cookies['doctorid'] !== undefined) ? <th>Action</th> : <th>Email</th>}
+                                                <th>Email</th>
+                                                {(cookies['doctorid'] !== undefined) ? <th>Action</th> : <></>}
                                             </tr>
                                         </thead>
                                         <tbody>
