@@ -38,7 +38,7 @@ function ROUTES(){
                 <Route path='/doctor-profile' element={<DoctorProfile />} />
                 <Route path='/doctor-add-assistant' element={<DoctorAddAssistant />} />
                 <Route path='/doctor-add-package' element={<DoctorAddPackage />} />
-                <Route path='/doctor-edit-assistant' element={<DoctorEditAssistant />} />
+                <Route path='/doctor-edit-assistant/:assistantid' element={<DoctorEditAssistant />} />
                 <Route path='/doctor-edit-package' element={<DoctorEditPackage />} />
                 <Route path='/logout' element={<Logout />} />
                 <Route path='*' element={<NoPageFound />} />
