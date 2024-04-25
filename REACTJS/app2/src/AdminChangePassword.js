@@ -1,5 +1,7 @@
 import Menu from "./Menu";
+import VerifyLogin from "./Verifylogin";
 export default function AdminChangePassword() {
+    VerifyLogin();
 
     return (<>
         <Menu />

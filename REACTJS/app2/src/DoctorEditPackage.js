@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import Menu from "./Menu";
+import VerifyLogin from "./Verifylogin";
 export default function DoctorEditPackage() {
+    VerifyLogin();
     return (<>
         <Menu />
         <main id="main" className="main">

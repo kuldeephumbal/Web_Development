@@ -7,7 +7,9 @@ import axios from "axios";
 import { showError, showMessage, NetworkError } from "./ToastMessage";
 import getBase from "./Api";
 import { ToastContainer } from "react-toastify";
+import VerifyLogin from "./Verifylogin";
 export default function DoctorAddPackage() {
+    VerifyLogin();
 
     let [cookies, setCookie, removeCookie] = useCookies(['theeasylearn']);
 

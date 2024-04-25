@@ -7,7 +7,9 @@ import { useState } from "react";
 import getBase from "./Api";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import VerifyLogin from "./Verifylogin";
 export default function DoctorAddAssistant() {
+  VerifyLogin();
 
   let [cookies, setCookie, removeCookie] = useCookies(['theeasylearn']);
   let [name, setName] = useState('');

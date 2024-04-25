@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 export default function AdminForgotPassword()
 {
     return(<main>
@@ -31,7 +32,7 @@ export default function AdminForgotPassword()
                           <button className="btn btn-primary w-100" type="submit">Login</button>
                         </div>
                         <div className="col-12 text-end">
-                          <p className="small mb-0">Back to <a href="admin-login.html">Login</a></p>
+                          <p className="small mb-0">Back to <Link to="/">Login</Link></p>
                         </div>
                       </form>
                     </div>

@@ -8,7 +8,9 @@ import Menu from "./Menu";
 import getBase from "./Api";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from 'react-cookie';
+import VerifyLogin from "./Verifylogin";
 export default function DoctorEditAssistant() {
+  VerifyLogin();
   let { assistantid } = useParams();
   console.log(assistantid);
 

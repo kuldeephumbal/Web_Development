@@ -1,5 +1,8 @@
 import Menu from "./Menu";
+import VerifyLogin from "./Verifylogin";
 export default function AdminComposeEmail() {
+    VerifyLogin();
+
     return (<>
         <Menu />
         <main id="main" className="main">

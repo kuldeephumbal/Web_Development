@@ -7,7 +7,9 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useCookies } from 'react-cookie';  
+import VerifyLogin from "./Verifylogin";
 export default function AdminPackage() {
+    VerifyLogin();
 
     let { doctorid } = useParams();
     console.log("doctor id = ", doctorid);

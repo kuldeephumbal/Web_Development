@@ -1,6 +1,7 @@
 import { useState } from "react";
 import getBase from "./Api";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { NetworkError, showError, showMessage } from "./ToastMessage";
 import { ToastContainer } from "react-toastify";
@@ -121,6 +122,9 @@ export default function DoctorRegister()
                           <button type="submit" className="btn btn-primary w-100">Create account</button>
                         </div>
                       </div>
+                      <div className="col-12 text-center">
+                      <p className="small mb-0">Already have account? <Link to='/doctor-login'>Login</Link></p>
+                    </div>
                     </form>
                   </div>
                 </div>
