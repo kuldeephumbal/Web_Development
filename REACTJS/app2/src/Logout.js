@@ -1,23 +1,21 @@
-import {useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+
 export default function Logout() {
-    let [cookies, setCookie, removeCookie] = useCookies(['theeasylearn']);
-    let navigate = useNavigate();
+    const [cookies, , removeCookie] = useCookies(['theeasylearn']);
+
     if (cookies['adminid'] !== undefined) {
         removeCookie("adminid");
-        navigate("/");
+        window.location.href = "/";
         // alert("You have been logged out");
-    }
-
+    } 
     else if (cookies['doctorid'] !== undefined) {
         removeCookie("doctorid");
-        navigate("/doctor-login");
+        window.location.href = "/doctor-login";
+    } 
+    else if (cookies['assistantid'] !== undefined) {
+        removeCookie("assistantid");
+        removeCookie("docid");
+        window.location.href = "/doctor-login";
     }
-
-    else if (cookies['assitantid'] !== undefined) {
-        removeCookie("assitantid");
-        navigate("/doctor-login");
-
-    }
-    return (<></>);
+    return null;
 }
