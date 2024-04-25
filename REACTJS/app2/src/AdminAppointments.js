@@ -6,15 +6,20 @@ import Menu from "./Menu";
 import { format, parseISO } from "date-fns";
 import { NetworkError, showError, showMessage } from "./ToastMessage";
 import { ToastContainer } from "react-toastify";
+import { useCookies } from 'react-cookie';
+import VerifyLogin from "./Verifylogin";
 
 export default function AdminAppointments() {
+  VerifyLogin();
   let { doctorid } = useParams();
   console.log("doctor id = ", doctorid);
 
-  let [appointments, setAppointments] = useState([]);
+  let [appointments, setAppointment] = useState([]);
   let [doctorName, setDoctorName] = useState('');
   let [isFetched, setIsFetched] = useState(false);
   let status = ['Book', 'Confirmed', 'Completed'];
+
+  let [cookies, setCookie, removeCookie] = useCookies(['theeasylearn']);
 
   let fetchAppointment = (day = null) => {
     let apiAddress = '';
@@ -38,7 +43,7 @@ export default function AdminAppointments() {
         showError('no appointment found');
       } else {
         response.data.splice(0, 2);
-        setAppointments(response.data);
+        setAppointment(response.data);
         setDoctorName(response.data[0]['name']);
         setIsFetched(true);
         showMessage('Data loaded successfully');
@@ -55,6 +60,70 @@ export default function AdminAppointments() {
     }
   }, [isFetched]);
 
+  let updateAppointment = function (mode, appointmentid) {
+    console.log(appointmentid + " ", mode);
+    let apiAddress = getBase() + "update_appointment.php?appointmentid=" + appointmentid;
+    if (mode === 'accept') {
+      apiAddress += "&status=1";
+    }
+    else {
+      apiAddress += "&status=2";
+    }
+    console.log(apiAddress);
+
+    axios({
+      method: 'get',
+      responseType: 'json',
+      url: apiAddress
+    })
+      .then((response) => {
+        console.log(response.data);
+        let error = response.data[0]['error'];
+        if (error !== 'no')
+          showError(error);
+        else {
+          let success = response.data[1]['success'];
+          let message = response.data[2]['message'];
+
+          if (success === 'yes') {
+            showMessage(message);
+          }
+          else {
+            showError(message);
+          }
+          let temp = appointments.filter((item)=>{
+              if(item.id === appointmentid)
+              {
+                if(mode === 'accept')
+                    item.status = 1;
+                else 
+                  item.status = 2;
+              }
+              return item
+          });
+          setAppointment(temp);
+        }
+      })
+      .catch((error) => {
+        showError(error);
+      });
+  }
+
+  let AppointmentManagent = function (props) {
+    console.log(props.status,props.appointmentid);
+    //alert('we are here');
+    if (cookies['assitantid'] === undefined)
+      return status[props.status];
+    else {
+      return (<>
+        <button disabled={props.status === 1 || props.status === 2} onClick={() => updateAppointment('accept', props.appointmentid)} type='button' className="btn btn-success btn-sm">{(props.status === 1)?'Accepted':'accept'}</button>&nbsp;
+        <button disabled={props.status === 1 || props.status === 2} onClick={() => updateAppointment('cancel', props.appointmentid)} type='button' className="btn btn-danger btn-sm">{(props.status === 2)?'Canceled':'Cancel'}</button>
+      </>)
+    }
+
+  }
+
+
   let displayAppointment = (item) => {
     return (
       <tr>
@@ -64,7 +133,7 @@ export default function AdminAppointments() {
         <td>{format(parseISO(item.appointmentdate), "EEEE, dd-MM-yyyy")}</td>
         <td>{item.servicetime} {format(parseISO(item.servicedate), "EEEE, dd-MM-yyyy")}</td>
         <td>{item.remarks}</td>
-        <td>{status[item.status]}</td>
+        <td><AppointmentManagent status={item.status} appointmentid={item.id} /></td>
       </tr>
     );
   };
