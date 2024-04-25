@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
@@ -6,9 +7,12 @@ export default function VerifyLogin() {
     let navigate = useNavigate();
 
     console.log(cookies['adminid']);
-
-    if (cookies['adminid'] === undefined && cookies['doctorid'] === undefined) 
-    {
-        navigate("/");
+    let RedirectToLogin = function () {
+        useEffect(() => {
+            navigate("/");
+        });
+    }
+    if (cookies['adminid'] === undefined && cookies['doctorid'] === undefined && cookies['assistantid'] === undefined) {
+        RedirectToLogin(); //display login module
     }
 }
