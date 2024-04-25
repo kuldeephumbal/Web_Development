@@ -7,8 +7,10 @@ import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import axios from "axios";
+import VerifyLogin from "./Verifylogin";
 
 export default function AdminAssistant() {
+    VerifyLogin();
     let { doctorid } = useParams();
     // console.log(doctorid);
     
@@ -129,7 +131,7 @@ export default function AdminAssistant() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {(assistants.length > 0) ? assistants.map((item) => displayAssistent(item)) : noAssistentFound()}
+                                            {(assistants.length > 0) ? assistants.map((item) => displayAssistent(item)) : -noAssistentFound()}
                                         </tbody>
                                     </table>
                                 </div>
