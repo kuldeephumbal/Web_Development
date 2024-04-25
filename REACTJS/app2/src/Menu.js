@@ -32,9 +32,9 @@ function DoctorMenuLink() {
           </Link>
         </li>
         <li className="nav-item shadow-sm">
-          <Link className="nav-link collapsed" to="/doctor-profile">
+          <Link className="nav-link collapsed" to="/admin-appointments/:doctorid">
             <i className="fa-solid fa-user-doctor" />
-            <span>My profile</span>
+            <span>My appointment</span>
           </Link>
         </li>
         <li className="nav-item shadow-sm">
@@ -54,13 +54,19 @@ function DoctorMenuLink() {
 }
 
 function AssistantMenuLink() {
-  let [cookies, setCookie, removeCookie] = useCookies(['assistantId']);
+  let [cookies, setCookie, removeCookie] = useCookies(['theeasylearn']);
   if(cookies['assistantid'] !== undefined){
     return(<>
     <li className="nav-item shadow-sm">
           <Link className="nav-link collapsed" to="assistant-home.html">
             <i className="fa-solid fa-house" />
             <span>Home</span>
+          </Link>
+        </li>
+        <li className="nav-item shadow-sm">
+          <Link className="nav-link collapsed" to="/admin-appointments/:doctorid">
+            <i className="fa-solid fa-user-doctor" />
+            <span>My appointment</span>
           </Link>
         </li>
     </>);
