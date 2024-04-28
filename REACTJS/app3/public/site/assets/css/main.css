@@ -920,9 +920,8 @@ ol {
 /* Bread Crumbs */
 .breadcrumbs {
   position: relative;
-  padding-bottom: 100px;
-  padding-top: 180px;
-  background-image: url("../images/bread-bg/bread-bg.jpg");
+  padding-bottom: 75px;
+  padding-top: 75px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -3403,7 +3402,8 @@ blockquote .shape {
 .sidebar .widget.popular-feeds .single-popular-feed .feed-desc .post-title a {
   font-size: 13px;
   font-weight: 500;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins',
+ sans-serif;
 }
 
 .sidebar .widget.popular-feeds .single-popular-feed .feed-desc .post-title a:hover {
@@ -6243,7 +6243,6 @@ blockquote .shape {
   width: auto;
   margin-left: auto;
   margin-right: auto;
-  background-image: url("../images/error/error-bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -6468,7 +6467,6 @@ blockquote .shape {
 	Footer CSS
 ========================================*/
 .footer {
-  background-image: url("../images/footer/footer-bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
