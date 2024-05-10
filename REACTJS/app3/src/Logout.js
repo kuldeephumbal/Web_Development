@@ -1,16 +1,18 @@
 import React from 'react';
-import Menu from './Menu';
-import Footer from './Footer';
-export default class Logout extends React.Component 
+import { withCookies } from 'react-cookie';
+class Logout extends React.Component 
 {
     constructor(props) {
         super(props);
+        const { cookies } = this.props; 
+        cookies.remove("userid");
+        cookies.remove("serviceid");
+        cookies.remove("email");
     }
         render(){
-            return (<>
-            <Menu />
-            <Footer />
-            </>
+            window.location = "/";
+            return (<></>
         );
         }
 }
+export default withCookies(Logout);
