@@ -1,15 +1,75 @@
 import React from 'react';
 import Menu from './Menu';
 import Footer from './Footer';
-import { Link } from 'react-router-dom';    
-export default class Doctor extends React.Component {
+import { Link } from 'react-router-dom'; 
+import axios from 'axios';
+import getBase from './Api';
+import { showError } from './ToastMessage'
+import { ToastContainer } from "react-toastify";
+import { withCookies } from 'react-cookie';   
+class Doctor extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            doctor: []
+        }
+    }
+    showDoctorDetail = (doctorid) => {
+        const { cookies } = this.props; 
+        cookies.set("mydoctorid",doctorid,{ path: '/' });
+    }
+    SingleDoctor = (item) => {
+        return(<div className = "col-lg-3 col-md-6 col-12" >
+            {/* Start Single Doctor */ }
+            <Link to='/doctor-details' onClick = {()=>this.showDoctorDetail(item.id) }>
+                <div className="single-doctor wow fadeInUp" data-wow-delay=".2s">
+                    <div className="image">
+                        <img src="site\assets\images\doctors\doctors.webp" alt="#" />
+
+                    </div>
+                    <div className="content">
+                        <h5>{item.qualification}</h5>
+                        <h3>{item.name} </h3>
+                    </div>
+                </div>
+            </Link>
+        {/* End Single Doctor */ }
+    </div>)
+    }
+    componentDidMount() {
+        const { cookies } = this.props;
+        let city = cookies.get('city');
+        let serviceid = cookies.get('serviceid');
+        let apiAddress = getBase() + `doctor.php?city=${city}&serviceid=${serviceid}`;
+        console.log(apiAddress);
+        axios({
+            method: 'get',
+            url: apiAddress,
+            responseType: 'json'
+        }).then((response) => {
+            console.log(response.data);
+            let error = response.data[0]['error'];
+            if (error !== 'no') {
+                showError(error);
+            }
+            else {
+                let total = response.data[1]['total'];
+                if (total === 0)
+                    showError('no doctors found')
+                else {
+                    response.data.splice(0, 2);
+                    this.setState({
+                        doctor: response.data
+                    });
+                }
+            }
+        }).catch((error) => {
+            showError('could not connect to server');
+        });
     }
     render() {
         return (<>
             <Menu />
-
             <div className="breadcrumbs overlay">
                 <div className="container">
                     <div className="row align-items-center">
@@ -25,75 +85,11 @@ export default class Doctor extends React.Component {
                     </div>
                 </div>
             </div>
-
             <section className="doctors section">
+                <ToastContainer />
                 <div className="container">
                     <div className="row">
-                        <div className="col-12">
-                            <div className="section-title">
-                                <h3>Doctors</h3>
-                                <h2 className="wow fadeInUp" data-wow-delay=".4s">Our Outstanding Team Is Active To Help You!</h2>
-                                <p className="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
-                                    Ipsum available, but the majority have suffered alteration in some form.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-lg-3 col-md-6 col-12">
-                            {/* Start Single Doctor */}
-                            <div className="single-doctor wow fadeInUp" data-wow-delay=".2s">
-                                <div className="image">
-                                    <img src="site/assets/images/doctors/doctor1.jpg" alt="#" />
-                                </div>
-                                <div className="content">
-                                    <h5>Cardiologist</h5>
-                                    <h3><a href="doctor-details.html">Dr.Felica Queen</a></h3>
-                                </div>
-                            </div>
-                            {/* End Single Doctor */}
-                        </div>
-                        <div className="col-lg-3 col-md-6 col-12">
-                            {/* Start Single Doctor */}
-                            <div className="single-doctor wow fadeInUp" data-wow-delay=".4s">
-                                <div className="image">
-                                    <img src="site/assets/images/doctors/doctor2.jpg" alt="#" />
-                                </div>
-                                <div className="content">
-                                    <h5>Neurologist</h5>
-                                    <h3><a href="doctor-details.html">Dr.Alice Williams</a></h3>
-                                </div>
-                            </div>
-                            {/* End Single Doctor */}
-                        </div>
-                        <div className="col-lg-3 col-md-6 col-12">
-                            {/* Start Single Doctor */}
-                            <div className="single-doctor wow fadeInUp" data-wow-delay=".6s">
-                                <div className="image">
-                                    <img src="site/assets/images/doctors/doctor3.jpg" alt="#" />
-                                   
-                                </div>
-                                <div className="content">
-                                    <h5>Physician Assistant</h5>
-                                    <h3><a href="doctor-details.html">Dr.Paul Flavius</a></h3>
-                                </div>
-                            </div>
-                            {/* End Single Doctor */}
-                        </div>
-                        <div className="col-lg-3 col-md-6 col-12">
-                            {/* Start Single Doctor */}
-                            <div className="single-doctor wow fadeInUp" data-wow-delay=".8s">
-                                <div className="image">
-                                    <img src="site/assets/images/doctors/doctor4.jpg" alt="#" />
-
-                                </div>
-                                <div className="content">
-                                    <h5>Physician Assistant</h5>
-                                    <h3><a href="doctor-details.html">Dr.Michael Bean</a></h3>
-                                </div>
-                            </div>
-                            {/* End Single Doctor */}
-                        </div>
-                        
+                        {this.state.doctor.map((item) => this.SingleDoctor(item))}
                     </div>
                 </div>
             </section>
@@ -103,3 +99,4 @@ export default class Doctor extends React.Component {
         );
     }
 }
+export default withCookies(Doctor);
