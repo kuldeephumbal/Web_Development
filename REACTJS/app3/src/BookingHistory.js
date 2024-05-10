@@ -2,14 +2,22 @@ import React from 'react';
 import Menu from './Menu';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
-export default class BookingHistory extends React.Component {
+import axios from 'axios';
+import getBase from './Api';
+import { showError, showMessage } from './ToastMessage'
+import { ToastContainer } from "react-toastify";
+import { withCookies } from 'react-cookie';
+class BookingHistory extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            appointments: [],
+            isModalOpen: false, // Add state to manage modal visibility
+        }
     }
     render() {
         return (<>
             <Menu />
-
             <div className="breadcrumbs overlay">
                 <div className="container">
                     <div className="row align-items-center">
@@ -166,3 +174,4 @@ export default class BookingHistory extends React.Component {
         );
     }
 }
+export default withCookies(BookingHistory);
