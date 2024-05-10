@@ -27,7 +27,7 @@ function MYROUTES(){
                 <Route index path='/doctor-details' element={<DoctorDeatils />} />
                 <Route index path='/my-appointment' element={<MyAppointment />} />
                 <Route index path='/booking-history' element={<BookingHistory />} />
-                <Route index path='/booking-appontment' element={<BookingAppointment />} />
+                <Route index path='/booking-appointment' element={<BookingAppointment />} />
                 <Route path='/logout' element={<Logout />} />
                 <Route path='*' element={<NoPageFound />} />
             </Routes>
