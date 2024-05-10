@@ -40,7 +40,7 @@ export default class ForgotPassword extends React.Component {
                                     <div className="button">
                                         <button type="submit" className="btn">Submit</button>
                                     </div>
-                                    <p className="outer-link text-end"> <Link to="/login"><i class="fa-solid fa-angle-left"></i> Back to Login</Link>
+                                    <p className="outer-link text-end"> <Link to="/login"><i className="fa-solid fa-angle-left"></i> Back to Login</Link>
                                     </p>
                                 </form>
                             </div>
