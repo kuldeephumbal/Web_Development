@@ -7,6 +7,18 @@ import { showError, showMessage } from './ToastMessage'
 import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 import { withCookies } from 'react-cookie';
+// Update SpecalitiesItem component to include CSS classes
+let SpecalitiesItem = (props) => {
+    return (
+        <div className="col-lg-4 col-md-6 col-sm-12 mb-4"> {/* Add Bootstrap grid classes */}
+            <div className="portfolio-sidebar service-item">
+                <div className="single-widget researcher-details">
+                    <h4 className="text-center text-success">{props.title}</h4>
+                </div>
+            </div>
+        </div>
+    );
+}
 
 class Home extends React.Component {
     constructor(props) {
@@ -15,10 +27,39 @@ class Home extends React.Component {
             city: [],
             department: [],
             services: [],
+            services2: [],
             selectedCity: '',
             selectedDepartment: '',
             isDataFetched: false
         }
+    }
+    GetService = () => {
+        let apiAddress = getBase() + "get_unique_service.php";
+        axios({
+            method: 'get',
+            url: apiAddress,
+            responseType: 'json'
+        }).then((response) => {
+            console.log(response.data);
+            let error = response.data[0]['error'];
+            if (error !== 'no') {
+                showError(error);
+            }
+            else {
+                let total = response.data[1]['total'];
+                if (total === 0)
+                    showError('no services found')
+                else {
+                    response.data.splice(0, 2);
+                    this.setState({
+                        services2: response.data,
+                        isDataFetched: true
+                    });
+                }
+            }
+        }).catch((error) => {
+            showError('could not connect to server');
+        })
     }
     GetCity = () => {
         let apiAddress = getBase() + "city.php";
@@ -109,6 +150,7 @@ class Home extends React.Component {
         if (this.state.isDataFetched === false) {
             this.GetCity();
             this.GetDepartment();
+            this.GetService();
         }
     }
     onchangeService = (SelectedService) => {
@@ -119,7 +161,7 @@ class Home extends React.Component {
     submitted = (e) => {
         e.preventDefault();
         console.log(this.state.selectedCity, this.state.selectedService);
-        const { cookies } = this.props; 
+        const { cookies } = this.props;
         cookies.set('city', this.state.selectedCity, { path: '/' });
         cookies.set('serviceid', this.state.selectedService, { path: '/' });
         window.location = "/doctor";
@@ -141,11 +183,13 @@ class Home extends React.Component {
                                         <div className="section-heading">
                                             <h2 className="wow fadeInLeft" data-wow-delay=".3s">Find A Doctor &amp; <br />Book Appointment
                                             </h2>
-                                            <p className="wow fadeInLeft" data-wow-delay=".5s">Our teaming has been focused on
-                                                building a high-qualities medicals service by MediAppoint.</p>
+                                            <p className="wow fadeInLeft" data-wow-delay=".5s">Welcome to MediAppoint, Book your appointments 
+                                             with top-rated doctors. Discover a variety of healthcare specialists, view doctor detailed profiles, and book appointments 
+                                              effortlessly. Our team has been focused on
+                                                building a high-qualities medicals service. Trust MediAppoint for a seamless and informative healthcare 
+                                                experience.</p>
                                             <div className="button wow fadeInLeft" data-wow-delay=".7s">
-                                                <Link to="/booking-aapointment" className="btn">Book Appointment</Link>
-                                                <Link to="#" className="btn alt">About Us</Link>
+                                                <Link to="/about-us" className="btn alt">About Us</Link>
                                             </div>
                                         </div>
                                         {/* End Hero Text */}
@@ -262,18 +306,12 @@ class Home extends React.Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-lg-4 col-md-12 col-12">
-                            <div className="portfolio-sidebar">
-                                <div className="single-widget researcher-details">
-                                    <h2 className="text-center text-success">Dental Care Treatment</h2>
-                                </div>
-
-                            </div>
-                        </div>
+                        {this.state.services2.map((item) => {
+                            return <SpecalitiesItem title={item.title} />
+                        })}
                     </div>
                 </div>
             </section>
-
             <Footer />
         </>
         );

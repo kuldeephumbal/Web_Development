@@ -38,6 +38,12 @@ function DoctorMenuLink() {
           </Link>
         </li>
         <li className="nav-item shadow-sm">
+          <Link className="nav-link collapsed" to="/doctor-profile">
+            <i className="fa-solid fa-user-doctor" />
+            <span>My Profile</span>
+          </Link>
+        </li>
+        <li className="nav-item shadow-sm">
           <Link className="nav-link collapsed" to="/admin-package/:doctorid">
             <i className="fa-solid fa-box-open" />
             <span>My package</span>

@@ -38,22 +38,29 @@ class MyAppointment extends React.Component {
         }).then((response) => {
             console.log(response);
             console.log(response.data);
-            let error = response.data[0]['error'];
-            if (error !== 'no') {
-                showError(error);
+            if (response.data && response.data.length > 0) {
+                let error = response.data[0]['error'];
+                if (error !== 'no') {
+                    showError(error);
+                } else {
+                    let doctorname = response.data[2] ? response.data[2]['name'] : '';
+                    let servicename = response.data[3] ? response.data[3]['title'] : '';
+                    console.log('doctorname ' + doctorname);
+                    console.log('servicename ' + servicename);
+                    this.setState({
+                        doctor: doctorname,
+                        department: servicename
+                    });
+                }
+            } else {
+                showError('Unexpected response format');
             }
-            else {
-                let doctorname = response.data[2]['name'];
-                let servicename = response.data[3]['title'];
-                console.log('doctorname ' + doctorname);
-                console.log('servicename ' + servicename);
-                this.setState({
-                    doctor: doctorname,
-                    department: servicename
-                });
-            }
+        }).catch((error) => {
+            showError('Failed to fetch data from API');
+            console.error(error);
         });
     }
+    
     bookAppointment = (e) => {
         e.preventDefault();
         console.log(this.state);
@@ -165,7 +172,7 @@ class MyAppointment extends React.Component {
                                         <div className="col-lg-4 col-md-6 col-12 p-0">
                                             <div className="appointment-input">
                                                 <label htmlFor="doctor"><i className="lni lni-sthethoscope" /></label>
-                                                <input type="text" name="doctor" id="doctor"
+                                                <input type="text" name="doctor" id="doctor" placeholder="Doctor"
                                                     value={this.state.doctor} />
                                             </div>
                                         </div>

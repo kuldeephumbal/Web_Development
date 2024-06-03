@@ -101,7 +101,7 @@ export default function DoctorLogin() {
                         value={password} onChange={(event) => setPassword(event.target.value)} required />
                       <div className="invalid-feedback">Please enter your password!</div>
                       <div className="mt-1">
-                        <Link to="/doctor-forgot-passwprd" className="text-danger">Forgot password?</Link>
+                        <Link to="/doctor-forgot-passwprd" >Forgot password?</Link>
                       </div>
                     </div>
                     <div className="col-12 text-center">

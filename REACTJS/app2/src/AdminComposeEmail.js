@@ -2,7 +2,6 @@ import Menu from "./Menu";
 import VerifyLogin from "./Verifylogin";
 export default function AdminComposeEmail() {
     VerifyLogin();
-
     return (<>
         <Menu />
         <main id="main" className="main">
@@ -15,7 +14,7 @@ export default function AdminComposeEmail() {
                     </div>
                     <div className="col-12">
                         <div className="card">
-                            <div className="card-header text-bg-primary h4">Compose Mail - [doctorName]</div>
+                            <div className="card-header text-bg-primary h4">Compose Mail - (doctorname)</div>
                             <div className="card-body mt-3">
                                 <form>
                                     <div className="form-group">

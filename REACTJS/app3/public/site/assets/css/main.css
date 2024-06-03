@@ -6776,3 +6776,14 @@ blockquote .shape {
 .footer .footer-bottom .extra-link li a:hover {
   text-decoration: underline;
 }
+/* Add CSS to ensure consistent styling for service items */
+.service-item {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/* Optional: Add additional styling if needed */
+.service-item h4 {
+  margin-bottom: 0;
+}

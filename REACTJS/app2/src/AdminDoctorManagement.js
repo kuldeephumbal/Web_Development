@@ -21,15 +21,35 @@ export default function AdminDoctorManagement() {
             <td>{item.regno}</td>
             <td>{item.qualification}</td>
             <td>
-                <div className="ms-3">
-                    <Link to="/admin-compose-email" title="Messages" className="me-2 text-primary">
-                        <i className="fa-solid fa-message fa-xl" />
-                    </Link>
-                    <Link to={"/admin-package/" + item.id} title="Pakages" className="pe-2 text-warning "><i className="fa-solid fa-box-open fa-xl" /></Link>
-                    <Link to={"/admin-assistant/" + item.id} title="Assistent" className="pe-2 text-success"><i className="fa-solid fa-users fa-xl" /></Link>
-                    <Link to={"/admin-appointments/" + item.id} title="Appointment" className="pe-2 text-danger"><i className="fa-solid fa-clipboard-list fa-xl" /></Link>
-                </div>
-            </td>
+        <Link to="/admin-compose-email" title="Message">
+          <lord-icon
+            src="https://cdn.lordicon.com/tmqaflqo.json"
+            trigger="hover"
+            style={{ width: '40px', height: '40px' }}
+          />
+        </Link>
+        <Link to={"/admin-package/" + item.id} title="Package">
+          <lord-icon
+            src="https://cdn.lordicon.com/jqiewnyd.json"
+            trigger="hover"
+            style={{ width: '40px', height: '40px' }}
+          />
+        </Link>
+        <Link to={"/admin-assitant/" + item.id} title="Assitant">
+          <lord-icon
+            src="https://cdn.lordicon.com/egmlnyku.json"
+            trigger="hover"
+            style={{ width: '40px', height: '40px' }}
+          />
+        </Link>
+        <Link to={"/admin-appointments/" + item['id']} title="Appointments">
+          <lord-icon
+            src="https://cdn.lordicon.com/lzgqzxrq.json"
+            trigger="hover"
+            style={{ width: '40px', height: '40px' }}
+          />
+        </Link>
+      </td>
         </tr>);
     }
     useEffect(() => {

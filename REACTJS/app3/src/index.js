@@ -10,6 +10,7 @@ import DoctorDeatils from './DoctorDetails';
 import MyAppointment from './MyAppointment';
 import BookingHistory from './BookingHistory';
 import BookingAppointment from './BookingAppointment';
+import Aboutus from './Aboutus';
 import Logout from './Logout';
 import NoPageFound from './NoPageFound';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -28,6 +29,7 @@ function MYROUTES(){
                 <Route index path='/my-appointment' element={<MyAppointment />} />
                 <Route index path='/booking-history' element={<BookingHistory />} />
                 <Route index path='/booking-appointment' element={<BookingAppointment />} />
+                <Route index path='/about-us' element={<Aboutus />} />
                 <Route path='/logout' element={<Logout />} />
                 <Route path='*' element={<NoPageFound />} />
             </Routes>

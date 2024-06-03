@@ -1,41 +1,77 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import getBase from "./Api";
+import Menu from "./Menu";
+import axios from "axios";
+import { showError, showMessage } from "./ToastMessage";
+import { ToastContainer } from "react-toastify";
 import { useCookies } from 'react-cookie';
-import getBase from './Api';
-import axios from 'axios';
-import { NetworkError, showError, showMessage } from './ToastMessage';
-import { ToastContainer } from 'react-toastify';
-import VerifyLogin from './Verifylogin';
+import { useNavigate } from "react-router-dom";
+
 export default function DoctorProfile() {
-    VerifyLogin();
-    let [qualification, setQualification] = useState('');
-    let [city, setCity] = useState('');
-    let [address, setAddress] = useState('');
-    let [gender, setGender] = useState('');
-    let [date, setDate] = useState('');
-    let [website, setWebsite] = useState('');
+    let [qualification, setQualification] = useState("");
+    let [city, setCity] = useState("");
+    let [address, setAddress] = useState("");
+    let [gender, setGender] = useState("");
+    let [dob, setDob] = useState("");
+    let [website, setWebsite] = useState("");
     let [photo, setPhoto] = useState(null);
-
-
-    let [cookies, setCookie, removeCookie] = useCookies(['theeasylearn']);
     let navigate = useNavigate();
-
-    let createProfile = function (event) {
-        event.preventDefault();
-        // console.log(qualification, city, address,gender, date, website, photo);
-        let apiAddress = getBase() + "update_doctor_profile.php";
+    let [cookies, setCookie, removeCookie] = useCookies('theeasylearn');
+    useEffect(() => {
+        let apiAddress = getBase() + `get_doctor_profile.php?doctorid=${cookies['doctorid']}`;
+        axios({
+          method: 'get',
+          url: apiAddress,
+          responseType: 'json'
+        }).then((response) => {
+          console.log(response.data);
+          let error = response.data[0]['error'];
+          if (error !== 'no') {
+            showError(error);
+          }
+          else {
+            let total = response.data[0]['total'];
+            if (total === 0) 
+            {
+              showError('no profile data found');
+            }
+            else
+            {
+              setQualification(response.data[2]['qualification']);
+              setCity(response.data[2]['city']);
+              setAddress(response.data[2]['address']);
+              setDob(response.data[2]['dob']);
+              setWebsite(response.data[2]['website']);
+              if(response.data[2]['gender'] === '0')
+                  setGender('female');
+              else
+                  setGender('male');
+            }
+          }
+        }).catch((error) => {
+          showError('no such api is available....');
+          console.log(error);
+        });
+      })
+    let updateDoctorProfile = function (e) {
+        e.preventDefault();
+        console.log(qualification, city, address, gender, dob, website, photo);
+        let apiAddress = getBase() + "doctor_update_profile.php";
+        console.log(apiAddress);
         let form = new FormData();
-        form.append("qualification", qualification);
+        form.append("doctor_id", cookies['doctorid']);
         form.append("city", city);
+        form.append("qualification", qualification);
         form.append("address", address);
-        form.append("gender",gender);
-        form.append("date", date);
+        form.append("gender", gender);
+        form.append("dob", dob);
         form.append("website", website);
-        form.append("photo", photo[0]);
+        form.append("photo", photo);
+        console.log(form);
         axios({
             method: 'post',
-            responseType: 'json',
             url: apiAddress,
+            responseType: 'json',
             data: form
         }).then((response) => {
             console.log(response.data);
@@ -44,96 +80,100 @@ export default function DoctorProfile() {
                 showError(error);
             }
             else {
-                let success = response.data[1]['success'];
-                let message = response.data[2]['message'];
-                if (success !== 'yes') {
-                    showError(message);
-                }
-                else {
+                let success = response.data[0]['success'];
+                let message = response.data[0]['message'];
+                if (success === 'yes') {
                     showMessage(message);
                     setTimeout(() => {
                         navigate("/admin-appointments/" + cookies['doctorid']);
                     }, 2000);
                 }
+                else
+                    showError(message);
             }
-
         }).catch((error) => {
-            showError(error);
+            showError('no such api is available....');
+            console.log(error);
         });
     }
-        return (<>
-            <main>
-                <div className="container">
-                    <ToastContainer />
-                    <section className="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-                        <div className="container">
-                            <div className="row justify-content-center">
-                                <div className="col-lg-8 col-12 d-flex flex-column align-items-center justify-content-center">
-                                    <div className="d-flex justify-content-center py-2">
-                                        <p className="d-flex align-items-center w-auto">
-                                            <img src="../logo.png" height="50px" />
-                                            <span className="d-none d-lg-block h4">Online Doctor Appointment</span>
-                                        </p>
-                                    </div>
-                                    {/* End Logo */}
-                                    <div className="card mb-3">
-                                        <div className="card-body">
-                                            <div className="pt-4 pb-2 mb-3">
-                                                <h5 className="card-title text-center fs-4">Create profile</h5>
-                                            </div>
-                                            <form className="row g-3" onSubmit={createProfile} >
-                                                <div className="col-6">
-                                                    <label htmlFor="qualification" className="form-label">Qualification</label>
-                                                    <input type="text" name="qualification" id="qualification" className="form-control" value={qualification} onChange={(e) => setQualification(e.target.value)} 
-                                                     required />
-                                                </div>
-                                                <div className="col-6">
-                                                    <label htmlFor="city" className="form-label">City</label>
-                                                    <input type="text" name="city" id="city" className="form-control" value={city} onChange={(e) => setCity(e.target.value)} required />
-                                                </div>
-                                                <div className="col-12">
-                                                    <label htmlFor="address" className="form-label">Address</label>
-                                                    <textarea name="address" id="address" cols={30} rows={2} className="form-control" defaultValue={""} value={address} onChange={(e) => 
-                                                         setAddress(e.target.value)}/>
-                                                </div>
-                                                <div className="col-6">
-                                                    <label htmlFor="gender" className="form-label">Gender</label>
-                                                    <select className="form-select" id="gender" name="gender" required
-                                                        value={gender} onChange={(e) => setGender(e.target.value)}>
-                                                        <option value='' >Select Gender</option>
-                                                        <option value="male">Male</option>
-                                                        <option value="female">Female</option>
-                                                    </select>
-                                                </div>
-                                                <div className="col-6">
-                                                    <label htmlFor="date" className="form-label">Date</label>
-                                                    <input type="date" name="date" id="date" className="form-control" value={date} onChange={(e) => setDate(e.target.value)} required />
-                                                </div>
-                                                <div className="col-6">
-                                                    <label htmlFor="website" className="form-label">Website</label>
-                                                    <input type="text" name="website" id="website" className="form-control" value={website} onChange={(e) => setWebsite(e.target.value)} required />
-                                                </div>
-                                                <div className="col-6">
-                                                    <label htmlFor="photo" className="form-label">Photo</label>
-                                                    <input type="file" name="file" id="file" className="form-control" onChange={(e) => setPhoto(e.target.files)} required />
-                                                </div>
-                                                <div className="col-12 text-end">
-                                                    <div className="mt-3">
-                                                        <button type="submit" className="btn btn-primary me-1">Save</button>
-                                                        <button type="reset" className="btn btn-danger">Reset</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </main>
-
-
-        </>
-        );
-    }
+    return (<>
+        {cookies['doctorid'] === undefined ?  <Menu />  : <></>}
+         <main>
+             <div className="container">
+                 <ToastContainer />
+                 <section className="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+                     <div className="container">
+                         <div className="row justify-content-center">
+                             <div className="col-lg-12 col-12 d-flex flex-column align-items-center justify-content-center">
+                                 <div className="d-flex justify-content-center py-2">
+                                     <p className="d-flex align-items-center w-auto">
+                                         <img src="../logo.png" height="50px" />
+                                         <span className="d-none d-lg-block h4">Online Doctor Appointment</span>
+                                     </p>
+                                 </div>{/* End Logo */}
+                             </div>
+ 
+                             <div className="col-lg-8 col-12 d-flex flex-column align-items-center justify-content-center">
+                                 <div className="card mb-3">
+                                     <div className="card-body">
+                                         <div className="py-1">
+                                             <h5 className="card-title text-center pb-0 fs-4">Create Profile</h5>
+                                         </div>
+                                         <form onSubmit={updateDoctorProfile}>
+                                             <div className="row g-3">
+                                                 <div className="col-6">
+                                                     <label htmlFor="qualification" className="form-label">Qualification</label>
+                                                     <input type="text" className="form-control" id="qualification" name="qualification" required
+                                                         value={qualification} onChange={(e) => setQualification(e.target.value)} />
+                                                 </div>
+                                                 <div className="col-6">
+                                                     <label htmlFor="city" className="form-label">City</label>
+                                                     <input type="text" className="form-control" id="city" name="city" required
+                                                         value={city} onChange={(e) => setCity(e.target.value)} />
+                                                 </div>
+                                                 <div className="col-12">
+                                                     <label htmlFor="address" className="form-label">Address</label>
+                                                     <input type="text" className="form-control" id="address" name="address" required
+                                                         value={address} onChange={(e) => setAddress(e.target.value)} />
+                                                 </div>
+                                                 <div className="col-6">
+                                                     <label htmlFor="gender" className="form-label">Gender</label>
+                                                     <select className="form-select" id="gender" name="gender" required
+                                                         value={gender} onChange={(e) => setGender(e.target.value)}>
+                                                         <option value='' >Select Gender</option>
+                                                         <option value="male">Male</option>
+                                                         <option value="female">Female</option>
+                                                     </select>
+                                                 </div>
+                                                 <div className="col-6">
+                                                     <label htmlFor="dob" className="form-label">Date of Birth</label>
+                                                     <input type="date" className="form-control" id="dob" name="dob" required value={dob} onChange={(e) =>
+                                                         setDob(e.target.value)} />
+                                                 </div>
+                                                 <div className="col-6">
+                                                     <label htmlFor="website" className="form-label">Website</label>
+                                                     <input type="url" className="form-control" id="website" name="website" required
+                                                         value={website} onChange={(e) => setWebsite(e.target.value)} />
+                                                 </div>
+                                                 <div className="col-6">
+                                                     <label htmlFor="photo" className="form-label">Photo</label>
+                                                     <input type="file" className="form-control" id="photo" name="photo" accept="image/*" required
+                                                         onChange={(e) => setPhoto(e.target.files[0])} />
+ 
+                                                 </div>
+                                                 <div className="col-12 mt-3 text-end">
+                                                     <button type="submit" className="btn btn-primary">Save</button>
+                                                 </div>
+                                             </div>
+                                         </form>
+                                     </div>
+                                 </div>
+                             </div>
+ 
+                         </div>
+                     </div></section>
+             </div>
+         </main>
+ </>
+     );
+}
