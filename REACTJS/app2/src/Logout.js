@@ -1,5 +1,4 @@
 import { useCookies } from "react-cookie";
-
 export default function Logout() {
     const [cookies, , removeCookie] = useCookies(['theeasylearn']);
 
